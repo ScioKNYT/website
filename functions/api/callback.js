@@ -34,7 +34,8 @@ export async function onRequest(context) {
                 token: result.access_token,
                 provider: 'github',
               })};
-              
+
+              res.site_id = "website-29s.pages.dev";
               const message = "authorization:github:success:" + JSON.stringify(res);
               
               // This is the magic change: "*" allows the message to reach the window 
