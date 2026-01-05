@@ -29,16 +29,26 @@ export async function onRequest(context) {
       <html>
         <body>
           <script>
-            const res = ${JSON.stringify({
-              token: result.access_token,
-              provider: 'github',
-            })};
-            window.opener.postMessage(
-              'authorization:github:success:' + JSON.stringify(res),
-              "https://website-29s.pages.dev"
-            );
+            (function() {
+              const res = ${JSON.stringify({
+                token: result.access_token,
+                provider: 'github',
+              })};
+              
+              // This is the message Decap CMS is listening for
+              const message = "authorization:github:success:" + JSON.stringify(res);
+              
+              // Send it to the opener (the main window)
+              window.opener.postMessage(message, window.location.origin);
+              
+              // Fallback: Try sending it without the origin check if the first one fails
+              window.opener.postMessage(message, "*");
+              
+              console.log("Message sent to opener");
+              setTimeout(() => { window.close(); }, 1000);
+            })();
           </script>
-          <p>Login successful! This window should close automatically. If not, check your main tab.</p>
+          <p>Login successful! Sending data to main window...</p>
         </body>
       </html>`,
       { headers: { 'content-type': 'text/html' } }
