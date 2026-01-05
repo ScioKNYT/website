@@ -35,20 +35,18 @@ export async function onRequest(context) {
                 provider: 'github',
               })};
               
+              // We send the message in the exact format Decap CMS expects
               const message = "authorization:github:success:" + JSON.stringify(res);
               
-              // 1. Check if we have an opener
+              // Try to send it to the opener
               if (window.opener) {
-                // 2. Send the message
+                window.opener.postMessage(message, window.location.origin);
+                // Fallback for security variations
                 window.opener.postMessage(message, "*");
-                console.log("Message sent to opener");
-                
-                // 3. Give it a tiny bit of time then close
-                setTimeout(() => { window.close(); }, 1000);
-              } else {
-                // 4. If opener is null, we are in trouble. Display the token for manual copy if needed.
-                document.body.innerHTML = "Error: Cannot find main window. Please try closing this and clicking login again.";
+                console.log("Sent message to opener");
               }
+              
+              setTimeout(() => { window.close(); }, 500);
             })();
           </script>
           <p>Login successful! Sending data to main window...</p>
