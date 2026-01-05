@@ -1,23 +1,43 @@
-export async function onRequestGet(context) {
-  const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = context.env;
-  const code = new URL(context.request.url).searchParams.get("code");
+export async function onRequest(context) {
+  const { env } = context;
+  const { searchParams } = new URL(context.request.url);
+  const code = searchParams.get('code');
 
-  const response = await fetch("https://github.com/login/oauth/access_token", {
-    method: "POST",
-    headers: { "content-type": "application/json", "accept": "application/json" },
-    body: JSON.stringify({ client_id: GITHUB_CLIENT_ID, client_secret: GITHUB_CLIENT_SECRET, code }),
+  const response = await fetch('https://github.com/login/oauth/access_token', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'user-agent': 'cloudflare-pages-static-cms-oauth',
+      accept: 'application/json',
+    },
+    body: JSON.stringify({
+      client_id: env.GITHUB_CLIENT_ID,
+      client_secret: env.GITHUB_CLIENT_SECRET,
+      code,
+    }),
   });
 
   const result = await response.json();
-  const script = `
-    <script>
-      const receiveMessage = (e) => {
-        if (e.data === "authorizing:github") {
-          window.opener.postMessage('authorization:github:success:${JSON.stringify({ token: result.access_token, provider: "github" })}', e.origin);
-        }
-      };
-      window.addEventListener("message", receiveMessage, false);
-      window.opener.postMessage("authorizing:github", "*");
-    </script>`;
-  return new Response(script, { headers: { "content-type": "text/html" } });
+
+  if (result.error) {
+    return new Response(JSON.stringify(result), { status: 401 });
+  }
+
+  return new Response(
+    `<html>
+      <body>
+        <script>
+          const res = ${JSON.stringify({
+            token: result.access_token,
+            provider: 'github',
+          })};
+          window.opener.postMessage(
+            'authorization:github:success:' + JSON.stringify(res),
+            window.location.origin
+          );
+        </script>
+      </body>
+    </html>`,
+    { headers: { 'content-type': 'text/html' } }
+  );
 }
