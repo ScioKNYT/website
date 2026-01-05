@@ -33,6 +33,7 @@ export async function onRequest(context) {
               const res = ${JSON.stringify({
                 token: result.access_token,
                 provider: 'github',
+                site_id: 'website-29s.pages.dev'
               })};
               
               // Standard message
