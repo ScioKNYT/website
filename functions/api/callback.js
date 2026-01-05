@@ -35,7 +35,7 @@ export async function onRequest(context) {
             })};
             window.opener.postMessage(
               'authorization:github:success:' + JSON.stringify(res),
-              window.location.origin
+              "https://website-29s.pages.dev"
             );
           </script>
           <p>Login successful! This window should close automatically. If not, check your main tab.</p>
