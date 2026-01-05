@@ -1,4 +1,4 @@
-export async function onRequestGet(context) {
+export async function onRequest(context) {
   const { GITHUB_CLIENT_ID } = context.env;
   return new Response(null, {
     status: 302,
