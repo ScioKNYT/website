@@ -2,7 +2,7 @@ backend:
   name: github
   repo: ScioKNYT/website
   branch: main
-  base_url: https://6d623f44.website-29s.pages.dev/ # REPLACE WITH YOUR CLOUDFLARE URL
+  base_url: https://6d623f44.website-29s.pages.dev # REPLACE WITH YOUR CLOUDFLARE URL
   auth_endpoint: /api/auth
 
 media_folder: "static/images"
