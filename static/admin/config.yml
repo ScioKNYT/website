@@ -1,3 +1,4 @@
+local_backend: true # This allows you to work locally without the GitHub login loop
 backend:
   name: github
   repo: ScioKNYT/website
