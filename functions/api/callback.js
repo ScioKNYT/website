@@ -35,18 +35,25 @@ export async function onRequest(context) {
                 provider: 'github',
               })};
               
-              // We send the message in the exact format Decap CMS expects
+              // Standard message
               const message = "authorization:github:success:" + JSON.stringify(res);
               
-              // Try to send it to the opener
               if (window.opener) {
-                window.opener.postMessage(message, window.location.origin);
-                // Fallback for security variations
+                // Method 1: Standard Decap Handshake
                 window.opener.postMessage(message, "*");
-                console.log("Sent message to opener");
+                
+                // Method 2: Manual storage injection (The "Force" method)
+                try {
+                  window.opener.localStorage.setItem('decap-cms-user', JSON.stringify(res));
+                } catch (e) {
+                  console.error("Local storage failed", e);
+                }
+
+                console.log("Handshake sent.");
+                setTimeout(() => { window.close(); }, 1000);
+              } else {
+                document.body.innerHTML = "Main window not found. Please refresh the admin page and try again.";
               }
-              
-              setTimeout(() => { window.close(); }, 500);
             })();
           </script>
           <p>Login successful! Sending data to main window...</p>
