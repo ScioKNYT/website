@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://website-29s.pages.dev
   auth_endpoint: /api/auth
+  site_url: https://website-29s.pages.dev
 
 media_folder: "static/images"
 public_folder: "/images"
