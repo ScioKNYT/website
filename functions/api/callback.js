@@ -34,15 +34,21 @@ export async function onRequest(context) {
                 token: result.access_token,
                 provider: 'github',
               })};
-
-              res.site_id = "website-29s.pages.dev";
+              
               const message = "authorization:github:success:" + JSON.stringify(res);
               
-              // This is the magic change: "*" allows the message to reach the window 
-              // regardless of the exact URL formatting (hash or no hash).
-              window.opener.postMessage(message, "*");
-              
-              setTimeout(() => { window.close(); }, 500);
+              // 1. Check if we have an opener
+              if (window.opener) {
+                // 2. Send the message
+                window.opener.postMessage(message, "*");
+                console.log("Message sent to opener");
+                
+                // 3. Give it a tiny bit of time then close
+                setTimeout(() => { window.close(); }, 1000);
+              } else {
+                // 4. If opener is null, we are in trouble. Display the token for manual copy if needed.
+                document.body.innerHTML = "Error: Cannot find main window. Please try closing this and clicking login again.";
+              }
             })();
           </script>
           <p>Login successful! Sending data to main window...</p>
