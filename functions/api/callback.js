@@ -35,17 +35,13 @@ export async function onRequest(context) {
                 provider: 'github',
               })};
               
-              // This is the message Decap CMS is listening for
               const message = "authorization:github:success:" + JSON.stringify(res);
               
-              // Send it to the opener (the main window)
-              window.opener.postMessage(message, window.location.origin);
-              
-              // Fallback: Try sending it without the origin check if the first one fails
+              // This is the magic change: "*" allows the message to reach the window 
+              // regardless of the exact URL formatting (hash or no hash).
               window.opener.postMessage(message, "*");
               
-              console.log("Message sent to opener");
-              setTimeout(() => { window.close(); }, 1000);
+              setTimeout(() => { window.close(); }, 500);
             })();
           </script>
           <p>Login successful! Sending data to main window...</p>
