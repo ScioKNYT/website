@@ -1,4 +1,6 @@
-/* 1. Global Setup */
+/* =========================================
+   1. GLOBAL VARIABLES & TYPOGRAPHY
+   ========================================= */
 :root {
     --nav-width: 260px;
 }
@@ -13,26 +15,26 @@ html, body {
     height: 100%;
     padding: 0;
 }
+
 * {
-    box-sizing: border-box !important; /* Crucial for preventing overflow */
+    box-sizing: border-box !important;
 }
 
-/* 2. Sidebar Fix */
+/* Hide logo text globally (Mitchell Style) */
+.logo a { font-size: 0 !important; }
+.logo img { display: block !important; max-height: 40px; width: auto; }
+.logo a span { display: none !important; }
+
+/* =========================================
+   2. DESKTOP LAYOUT (Min-Width: 900px)
+   ========================================= */
 @media screen and (min-width: 900px) {
-    #theme-toggle {
-        position: fixed !important;
-        top: 40px !important;      /* Matches the logo's top padding */
-        right: 40px !important;    /* Spacing from the right edge */
-        margin: 0 !important;
-        padding: 0 !important;
-        z-index: 1001 !important;  /* Stays above everything */
-    }
+    /* Sidebar Configuration */
     .header {
         position: fixed !important;
-        overflow: hidden !important;
         top: 0 !important;
         left: 0 !important;
-        width: var(--nav-width) !important; /* Fixed width */
+        width: var(--nav-width) !important;
         height: 100% !important;
         background: var(--theme) !important;
         padding: 60px 40px !important;
@@ -41,9 +43,10 @@ html, body {
         align-items: flex-start !important;
         z-index: 100 !important;
         border: none !important;
+        overflow: hidden !important;
     }
 
-    /* THE FIX: Ensure the nav container doesn't expand past the sidebar */
+    /* Navigation Container */
     .nav {
         display: block !important;
         width: 100% !important;
@@ -51,66 +54,134 @@ html, body {
     }
 
     .logo {
-        display: flex !important;
-        align-items: center !important;
-        gap: 15px !important;
         margin-bottom: 30px !important;
+        display: flex !important;
+        gap: 15px !important;
     }
 
     #menu {
         display: flex !important;
         flex-direction: column !important;
     }
-
     #menu li { margin: 8px 0 !important; }
 
-    /* 3. Content Area Fix (Bringing the text back) */
+    /* Theme Toggle: Pinned Top-Right */
+    #theme-toggle {
+        position: fixed !important;
+        top: 40px !important;
+        right: 40px !important;
+        left: auto !important;
+        margin: 0 !important;
+        z-index: 1001 !important;
+    }
+
+    /* Main Content: Right of Sidebar */
     .main {
-        margin-left: var(--nav-width) !important; /* Move it past the sidebar */
+        margin-left: var(--nav-width) !important;
         margin-right: auto !important;
         max-width: 700px !important;
         padding: 65px 40px !important;
-        display: block !important; /* Ensure it's not hidden */
-        visibility: visible !important;
         min-height: auto !important;
         padding-bottom: 100px !important;
     }
+
+    /* Footer: Pinned Bottom-Left */
+    .footer {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 40px !important;
+        width: auto !important;
+        z-index: 101 !important;
+        background: transparent !important;
+        font-size: 11px !important;
+        text-align: left !important;
+        padding: 0 !important;
+    }
 }
 
-/* 4. Hide the Logo Text (Mitchell style) */
-.logo a { font-size: 0 !important; }
-.logo img { display: block !important; max-height: 40px; width: auto; }
+/* =========================================
+   3. MOBILE LAYOUT (Max-Width: 899px)
+   ========================================= */
+@media screen and (max-width: 899px) {
+    /* Reset Header to be standard top block */
+    .header {
+        position: relative !important;
+        height: auto !important;
+        width: 100% !important;
+        padding: 30px 20px 10px 20px !important; /* Top/Side Padding */
+        display: flex !important;
+        flex-direction: column !important;
+        background: var(--theme) !important;
+        overflow: visible !important;
+    }
 
-/* 5. Cleanup PaperMod Profile Mode (Home Page) */
+    /* Toggle: Absolute Top-Right */
+    #theme-toggle {
+        position: absolute !important;
+        top: 30px !important; /* Aligns with Logo top */
+        right: 20px !important; /* Aligns with screen edge */
+        bottom: auto !important;
+        left: auto !important;
+        margin: 0 !important;
+    }
+
+    /* Logo: Top Left */
+    .logo {
+        margin-bottom: 20px !important; /* Space between logo and menu links */
+        width: auto !important;
+    }
+
+    /* Menu: Horizontal List (No Scrolling) */
+    .nav { 
+        display: block !important; 
+        width: 100% !important;
+        overflow: visible !important; /* Kills the side scroll */
+    }
+    
+    #menu {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        white-space: normal !important;
+    }
+
+    #menu li {
+        margin: 0 20px 0 0 !important; /* Spacing between "About Writing Misc" */
+        display: inline-block !important;
+    }
+
+    /* Content: Simple Vertical Stack */
+    .main {
+        margin-left: 0 !important;
+        padding: 10px 20px 40px 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Footer: Normal Flow at Bottom */
+    .footer {
+        position: relative !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        text-align: left !important;
+        width: 100% !important;
+        bottom: auto !important;
+        left: auto !important;
+    }
+}
+
+/* Cleanup: Hide "Powered by" */
+.footer > span:last-child {
+    display: none !important;
+}
+
+/* Cleanup: Home Page Profile */
 .profile_inner {
     text-align: left !important;
     margin-top: 0 !important;
     padding: 0 !important;
 }
-
 .social-icons { justify-content: flex-start !important; }
-
-/* Align Footer to the Bottom Left of the content area */
-.footer {
-    position: fixed !important;
-    bottom: 20px !important;
-    left: 40px !important; /* Matches your logo/menu indentation */
-    margin: 0 !important;
-    padding: 0 !important;
-    width: auto !important;
-    z-index: 101 !important; /* Stays above the main content */
-    background: transparent !important;
-    font-size: 11px !important;
-}
-
-/* On mobile, reset the footer to be centered/normal */
-@media screen and (max-width: 899px) {
-    .footer {
-        margin-left: 0 !important;
-        text-align: center !important;
-        padding-left: 0 !important;
-    }
-}
-.footer > span:last-child {
-    display: none !important;
-}
