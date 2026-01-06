@@ -20,25 +20,35 @@ body {
         left: 0 !important;
         width: var(--nav-width) !important;
         height: 100vh !important;
-        /* Uses theme variable so it changes on toggle */
         background: var(--theme) !important;
-        border-right: none !important;
-        padding: 80px 40px !important;
+        padding: 40px !important; /* Spacing from the edges */
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
+        z-index: 1000 !important;
     }
 
+    /* Container for Logo + Toggle */
     .nav {
-        display: block !important;
+        display: flex !important;
+        flex-direction: column !important; /* Stacks nav items below logo */
         width: 100% !important;
     }
 
-    .logo a {
-        font-size: 18px !important;
-        font-weight: 600 !important;
-        color: var(--primary) !important;
-        letter-spacing: -0.02em;
+    /* This aligns Logo and Sun/Moon icon horizontally */
+    .logo {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+
+    /* Target the theme toggle specifically to pull it up next to the logo */
+    .theme-toggle {
+        margin-top: 0 !important;
+        padding: 0 !important;
+        position: static !important; /* Removes it from the bottom of the screen */
     }
 
     #menu {
@@ -69,11 +79,14 @@ body {
         padding: 85px 60px !important;
         background: var(--theme) !important;
     }
-
-    .theme-toggle {
-        margin-top: auto !important;
-        padding-top: 20px;
+    .logo a span {
+    display: none !important;
     }
+    .logo img {
+    max-height: 40px; /* Adjust as needed */
+    width: auto;
+}
+    
 }
 
 /* 4. Cleanup PaperMod Cards */
