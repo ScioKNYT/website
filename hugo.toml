@@ -20,11 +20,11 @@ theme = "PaperMod"
         enabled = true
         title = "Huzef UR Rahman"
         subtitle = "Materials and Design Engineer. (Add more of your bio here)"
-        # imageUrl = "https://website-29s.pages.dev/images/avatar.png" # Uncomment when you have an image
+        imageUrl = "/logo.png" # Uncomment when you have an image
 
     [params.label]
     text = "" # Leave this empty so only the image shows
-    icon = "/images/logo.png"
+    icon = "/logo.png"
     iconHeight = 35 # Adjust this to fit your sidebar nicely
     
 [[menu.main]]
