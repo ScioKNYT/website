@@ -1,4 +1,17 @@
 baseURL = 'https://website-29s.pages.dev'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
-theme = 'PaperMod'
+theme = "PaperMod"
+
+[params]
+    # This removes the "Profile Mode" (big icons) and uses the "List" style
+    homeInfoParams = { Title = "Huzef UR Rahman", Content = "I am a Materials and Design Engineer." }
+    
+    # Clean typography settings
+    ShowCodeCopyButtons = true
+    ShowReadingTime = true
+    ShowBreadCrumbs = true
+    
+    # This gives it that crisp, paper-white look
+    defaultTheme = "light" 
+    disableThemeToggle = true
