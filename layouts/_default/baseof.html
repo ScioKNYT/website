@@ -1,61 +1,54 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode | default "en" }}">
+<html lang="en">
 <head>
-  {{ partial "head.html" . }}
-  <link rel="stylesheet" href="{{ "/css/extended.css" | relURL }}" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  {{ range .AlternativeOutputFormats -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{ end -}}
 </head>
-<body>
-  <aside class="header">
-    <div class="logo">
-      <a href="{{ .Site.BaseURL }}">
-        {{- if .Site.Params.profileMode.imageUrl }}
-          <img src="{{ .Site.Params.profileMode.imageUrl | relURL }}" alt="{{ .Site.Title }}">
-        {{- end }}
-        <span>{{ .Site.Title }}</span>
-      </a>
-    </div>
-    <nav class="nav">
-      <ul id="menu">
-        {{ range .Site.Menus.main }}
+<body class="antialiased">
+  <div class="layout">
+    <header class="header">
+      <div class="logo">
+        <a href="{{ .Site.BaseURL }}">
+          <span>Mitchell Hashimoto</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <ul class="menu">
+          {{ range .Site.Menus.main }}
           <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-        {{ end }}
-      </ul>
-    </nav>
-  </aside>
-
-  <main class="main">
-    {{ if and .IsHome (isset .Site.Params "profileMode") }}
-      <h1>{{ .Site.Params.profileMode.title | default .Site.Title }}</h1>
-      {{ .Content }}
-    {{ else }}
-      <h1>{{ .Title }}</h1>
-      {{ .Content }}
-    {{ end }}
-
-    <footer class="footer">
-      {{ if .Site.Params.footer }}
-        {{ .Site.Params.footer | safeHTML }}
+          {{ end }}
+        </ul>
+      </nav>
+    </header>
+    <main class="content">
+      {{ if .IsHome }}
+      <h1 class="title">{{ .Site.Title }}</h1>
       {{ else }}
-        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+      <h1 class="title">{{ .Title }}</h1>
       {{ end }}
+      <div class="prose">
+        {{ .Content }}
+      </div>
+    </main>
+    <footer class="footer">
+      <span>© {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</span>
     </footer>
-  </main>
-
-  <button id="theme-toggle" aria-label="Toggle theme">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
-
+  </div>
+  
   <script>
-    // Mitchell doesn't have theme toggle, but PaperMod does — let's enable it
-    document.getElementById('theme-toggle').addEventListener('click', function() {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.classList.add('dark');
+    // Simple theme toggle functionality
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+    
+    if (currentTheme === 'dark') {
+      document.documentElement.classList.add('dark');
     }
   </script>
 </body>
