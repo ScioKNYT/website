@@ -4,6 +4,7 @@ title = 'Huzef UR Rahman'
 theme = "PaperMod"
 
 [params]
+    customCSS = ["css/extended.css"]
     title = "Huzef UR Rahman"
     defaultTheme = "auto" 
     disableThemeToggle = false
