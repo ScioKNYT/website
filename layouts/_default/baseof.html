@@ -9,11 +9,11 @@
     <aside class="header">
       <div class="logo">
         <a href="{{ .Site.BaseURL }}">
-          {{- if .Site.Params.profileMode.imageUrl }}
+          {{ if .Site.Params.profileMode.imageUrl }}
             <img src="{{ .Site.Params.profileMode.imageUrl | relURL }}" alt="{{ .Site.Title }}" />
-          {{- else }}
+          {{ else }}
             <span>{{ .Site.Title }}</span>
-          {{- end }}
+          {{ end }}
         </a>
       </div>
       <nav class="nav">
