@@ -1,14 +1,15 @@
-/* 1. Global Typography (Mitchell uses System Fonts) */
+/* 1. Global Typography & Variable Setup */
 :root {
     --nav-width: 260px;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    font-size: 15px; /* Mitchell uses a slightly smaller, crisp font */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
     line-height: 1.6;
-    color: #333;
-    background-color: #fff !important;
+    /* This ensures the body uses the theme's colors */
+    background-color: var(--theme) !important;
+    color: var(--primary) !important;
 }
 
 /* 2. Sidebar Alignment */
@@ -19,9 +20,10 @@ body {
         left: 0 !important;
         width: var(--nav-width) !important;
         height: 100vh !important;
-        background: #fff !important;
-        border-right: none !important; /* Mitchell has no border-right */
-        padding: 80px 40px !important; /* More breathing room at top */
+        /* Uses theme variable so it changes on toggle */
+        background: var(--theme) !important;
+        border-right: none !important;
+        padding: 80px 40px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -32,15 +34,13 @@ body {
         width: 100% !important;
     }
 
-    /* Site Title (Logo) */
     .logo a {
         font-size: 18px !important;
         font-weight: 600 !important;
-        color: #000 !important;
+        color: var(--primary) !important;
         letter-spacing: -0.02em;
     }
 
-    /* Menu Links */
     #menu {
         margin-top: 30px !important;
         display: flex !important;
@@ -48,44 +48,51 @@ body {
     }
 
     #menu li {
-        margin: 6px 0 !important; /* Tight Mitchell-style list spacing */
+        margin: 8px 0 !important;
     }
 
     #menu a {
         font-size: 15px !important;
-        color: #666 !important;
-        text-decoration: none !important;
+        /* Secondary color for links like Mitchell's */
+        color: var(--secondary) !important;
     }
 
-    #menu a:hover {
-        color: #000 !important;
+    #menu a:hover, #menu a.active {
+        color: var(--primary) !important;
         text-decoration: underline !important;
     }
 
-    /* 3. Main Content Alignment */
+    /* 3. Content Area */
     .main {
         margin-left: var(--nav-width) !important;
-        max-width: 680px !important;
-        padding: 85px 60px !important; /* Matches sidebar top padding */
+        max-width: 720px !important;
+        padding: 85px 60px !important;
+        background: var(--theme) !important;
     }
 
-    /* Hide the theme toggle or move it to the bottom left */
     .theme-toggle {
         margin-top: auto !important;
         padding-top: 20px;
     }
 }
 
-/* 4. Remove PaperMod default card styling to make it look like "Paper" */
+/* 4. Cleanup PaperMod Cards */
 .post-entry {
-    background: none !important;
+    background: transparent !important;
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 25px !important;
 }
 
 .post-title {
-    font-size: 18px !important;
+    font-size: 19px !important;
     font-weight: 600 !important;
+    color: var(--primary) !important;
+}
+.main h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: -0.03em;
 }
