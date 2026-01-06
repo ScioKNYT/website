@@ -13,7 +13,7 @@ body {
 
 /* 2. Sidebar Fix */
 @media screen and (min-width: 900px) {
-    .theme-toggle {
+    #theme-toggle {
         position: fixed !important;
         top: 40px !important;      /* Matches the logo's top padding */
         right: 40px !important;    /* Spacing from the right edge */
