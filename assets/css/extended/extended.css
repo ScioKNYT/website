@@ -1,3 +1,7 @@
+.list, .page, .main {
+    display: block !important;
+    width: auto !important;
+}
 /* 1. Hide ALL text inside the logo link, only allow the image */
 .logo a {
     font-size: 0 !important; /* Makes any text nodes disappear */
@@ -97,13 +101,27 @@ body {
 
     /* 3. Content Area */
     .main {
-        margin-left: var(--nav-width) !important;
-        max-width: 720px !important;
-        padding: 85px 60px !important;
+        margin-left: 260px !important;
+        max-width: 700px !important;
+        padding: 80px 40px !important;
         background: var(--theme) !important;
-    } 
-}
+        margin-right: auto !important;
+    }
+    /* 2. Fix the profile mode text alignment */
+    .profile_inner {
+        text-align: left !important; /* Mitchell's text is left-aligned, not centered */
+        padding: 0 !important;
+    }
 
+    .profile_inner h1 {
+        font-size: 28px !important;
+        margin-bottom: 10px !important;
+    }
+}
+.social-icons {
+    justify-content: flex-start !important; /* Aligns social icons to the left */
+    margin-top: 15px !important;
+}
 /* 4. Cleanup PaperMod Cards */
 .post-entry {
     background: transparent !important;
