@@ -1,13 +1,16 @@
+site_url: https://website-29s.pages.dev
+display_url: https://website-29s.pages.dev
+publish_mode: editorial_workflow
+show_preview_links: true
 backend:
   name: github
   repo: ScioKNYT/website
   branch: main
   base_url: https://website-29s.pages.dev
-  auth_endpoint: api/auth
+  auth_endpoint: /api/auth
+  squash_merges: true
+  preview_context: 'cloudflare preview deploy'
   site_domain: website-29s.pages.dev
-
-display_url: https://website-29s.pages.dev
-
 
 media_folder: "static/images"
 public_folder: "/images"
@@ -18,6 +21,9 @@ collections:
     folder: "content/posts"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: 'posts/{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
