@@ -7,7 +7,7 @@ backend:
   site_domain: website-29s.pages.dev
 
 display_url: https://website-29s.pages.dev
-logo_url: https://website-29s.pages.dev/images/logo.png # Optional, but helps UI load
+
 
 media_folder: "static/images"
 public_folder: "/images"
