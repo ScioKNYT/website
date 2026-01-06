@@ -2,6 +2,18 @@ site_url: https://website-29s.pages.dev
 display_url: https://website-29s.pages.dev
 publish_mode: editorial_workflow
 show_preview_links: true
+menu:
+  main:
+    - name: About
+      url: /
+      weight: 1
+    - name: Writing
+      url: /posts/
+      weight: 2
+    - name: GitHub
+      url: https://github.com/ScioKNYT
+      weight: 3
+
 backend:
   name: github
   repo: ScioKNYT/website
