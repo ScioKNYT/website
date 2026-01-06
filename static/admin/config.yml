@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: github
   repo: ScioKNYT/website
   branch: main
   base_url: https://website-29s.pages.dev
