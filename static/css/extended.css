@@ -66,16 +66,21 @@ body {
         gap: var(--gap) !important;
         width: calc(var(--sidebar-width) + var(--gap) + var(--content-width)) !important;
         flex-shrink: 0 !important;
-    }
+        margin: 0 !important;
+        padding: 0 !important;
+      }
 
     .header {
         width: var(--sidebar-width) !important;
-        flex-shrink: 0 !important;
-        display: flex !important;
-        flex-direction: column !important;
-        position: sticky !important;
-        top: var(--top-spacer) !important;
-        padding: 0 !important;
+       flex-shrink: 0 !important;
+       display: flex !important;
+       flex-direction: column !important;
+       position: sticky !important;
+       top: var(--top-spacer) !important;
+       padding: 0 !important;
+       margin: 0 !important;
+       height: calc(100vh - var(--top-spacer)) !important; /* critical */
+       align-items: flex-start !important;
     }
 
     .logo {
@@ -114,12 +119,14 @@ body {
     #theme-toggle {
         position: fixed !important;
         top: calc(var(--top-spacer) + 5px) !important;
-        left: calc(50% + (var(--content-width) / 2) + var(--gap) + (var(--sidebar-width) / 2)) !important;
-        transform: translateX(-100%) !important;
+        /* Position at right edge of content column */
+        right: calc(50% - (var(--content-width) / 2)) !important;
+        left: auto !important;
         background: none !important;
         border: none !important;
         cursor: pointer !important;
-    }
+        z-index: 100 !important;
+      }
 
     /* Footer under content */
     .footer {
@@ -132,6 +139,8 @@ body {
         font-size: 12px !important;
         opacity: 0.5 !important;
         pointer-events: none !important;
+        margin: 0 !important; 
+        padding: 0 !important;
     }
     .footer a {
         pointer-events: auto !important;
@@ -187,4 +196,23 @@ body {
 /* Cleanup */
 .footer > span:last-child {
     display: none !important;
+}
+/* Show text by default */
+.logo a span {
+  display: inline-block !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: var(--primary) !important;
+}
+
+/* Hide text ONLY if image exists AND on desktop */
+@media (min-width: 900px) {
+  .logo img {
+    display: block !important;
+    width: 40px !important;
+    height: auto !important;
+  }
+  .logo img + span {
+    display: none !important;
+  }
 }
