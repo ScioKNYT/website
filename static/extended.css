@@ -1,130 +1,126 @@
 /* =========================================
-   1. GLOBAL VARIABLES & RESET
+   VARIABLES
    ========================================= */
 :root {
-    --sidebar-width: 200px !important;
-    --content-width: 650px !important;
-    --gap: 60px !important;
-    --top-spacer: 120px !important;
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+    --sidebar-width: 200px;
+    --content-width: 650px;
+    --gap: 60px;
+    --top-spacer: 120px;
 }
 
-* {
-    box-sizing: border-box !important;
-}
+* { box-sizing: border-box !important; }
 
-html {
-    overflow-y: scroll !important;
-}
+html { overflow-y: scroll !important; }
 
 body {
-    font-family: var(--font) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
     font-size: 15px !important;
     line-height: 1.6 !important;
-    background-color: var(--theme) !important;
+    background: var(--theme) !important;
     color: var(--primary) !important;
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
     min-height: 100vh !important;
 }
 
-/* Hide theme text, show logo image */
+/* Logo */
 .logo a {
     font-size: 0 !important;
     display: inline-block !important;
 }
 .logo a span {
-    display: none !important;
+    display: inline-block !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
 }
 .logo img {
-    display: block !important;
-    width: 40px !important;
-    height: auto !important;
+    display: none !important; /* fallback if no image */
+}
+
+@media (min-width: 900px) {
+    .logo a span {
+        display: none !important;
+    }
+    .logo img {
+        display: block !important;
+        width: 40px !important;
+        height: auto !important;
+    }
 }
 
 /* =========================================
-   2. DESKTOP LAYOUT (Centered Card)
+   DESKTOP LAYOUT
    ========================================= */
-@media screen and (min-width: 900px) {
+@media (min-width: 900px) {
     body {
         display: flex !important;
         justify-content: center !important;
         align-items: flex-start !important;
         padding-top: var(--top-spacer) !important;
         padding-bottom: 100px !important;
-        position: relative !important;
     }
 
     .container {
         display: flex !important;
         gap: var(--gap) !important;
         width: calc(var(--sidebar-width) + var(--gap) + var(--content-width)) !important;
-        position: relative !important;
         flex-shrink: 0 !important;
     }
 
-    /* --- SIDEBAR (Left) --- */
-    .header, .sidebar {
+    .header {
         width: var(--sidebar-width) !important;
         flex-shrink: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         position: sticky !important;
         top: var(--top-spacer) !important;
-        height: fit-content !important;
         padding: 0 !important;
-        background: transparent !important;
-        border: none !important;
     }
 
     .logo {
         margin-bottom: 40px !important;
-        display: block !important;
     }
 
-    #menu, .nav ul {
+    #menu {
         display: flex !important;
         flex-direction: column !important;
-        margin: 0 !important;
-        padding: 0 !important;
         list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
         gap: 6px !important;
     }
 
-    #menu li, .nav li {
+    #menu li {
         margin: 0 !important;
         display: block !important;
     }
 
-    /* --- MAIN CONTENT (Right) --- */
-    .main, .content {
+    .main {
         width: var(--content-width) !important;
         max-width: var(--content-width) !important;
         flex-shrink: 0 !important;
     }
 
-    .main h1, .page-header h1, .content h1 {
+    .main h1 {
         margin-top: 0 !important;
         margin-bottom: 35px !important;
         font-size: 28px !important;
-        line-height: 1.1 !important;
         font-weight: 700 !important;
+        line-height: 1.1 !important;
     }
 
-    /* --- THEME TOGGLE (Top Right of CONTENT COLUMN) --- */
+    /* Theme toggle: top-right of content column */
     #theme-toggle {
         position: fixed !important;
         top: calc(var(--top-spacer) + 5px) !important;
-        /* Position at right edge of content column */
         left: calc(50% + (var(--content-width) / 2) + var(--gap) + (var(--sidebar-width) / 2)) !important;
         transform: translateX(-100%) !important;
-        right: auto !important;
-        margin: 0 !important;
-        z-index: 100 !important;
+        background: none !important;
+        border: none !important;
+        cursor: pointer !important;
     }
 
-    /* --- FOOTER (Bottom Center of CONTENT COLUMN) --- */
+    /* Footer under content */
     .footer {
         position: fixed !important;
         bottom: 30px !important;
@@ -134,96 +130,60 @@ body {
         text-align: center !important;
         font-size: 12px !important;
         opacity: 0.5 !important;
-        background: transparent !important;
         pointer-events: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
     }
-    .footer a, .footer span {
+    .footer a {
         pointer-events: auto !important;
     }
 }
 
 /* =========================================
-   3. MOBILE LAYOUT
+   MOBILE
    ========================================= */
-@media screen and (max-width: 899px) {
+@media (max-width: 899px) {
     body {
-        display: block !important;
-        padding: 40px 20px 60px 20px !important;
+        padding: 40px 20px 60px !important;
     }
 
-    .header, .sidebar {
-        position: relative !important;
-        width: 100% !important;
-        height: auto !important;
-        padding: 0 !important;
+    .header {
         margin-bottom: 40px !important;
     }
 
     .logo {
         margin-bottom: 20px !important;
-        width: auto !important;
     }
 
     #theme-toggle {
         position: fixed !important;
         top: 45px !important;
         right: 20px !important;
-        z-index: 100 !important;
     }
 
-    .nav, #menu {
-        overflow: visible !important;
-    }
-
-    #menu, .nav ul {
+    #menu {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
         gap: 20px !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        list-style: none !important;
     }
 
-    #menu li, .nav li {
-        margin: 0 !important;
+    #menu li {
         display: inline-block !important;
     }
 
-    .main, .content {
+    .main {
         width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
     }
 
     .footer {
         position: relative !important;
         text-align: center !important;
-        padding: 20px 0 !important;
-        width: 100% !important;
-        left: auto !important;
-        bottom: auto !important;
-        margin: 40px 0 0 0 !important;
-        transform: none !important;
+        margin-top: 40px !important;
+        padding: 0 !important;
+        opacity: 0.5 !important;
     }
 }
 
-/* =========================================
-   4. CLEANUP
-   ========================================= */
+/* Cleanup */
 .footer > span:last-child {
     display: none !important;
-}
-
-.profile_inner {
-    text-align: center !important;
-    margin: 0 !important;
-}
-
-@media screen and (min-width: 900px) {
-    .profile_inner {
-        text-align: left !important;
-    }
 }
