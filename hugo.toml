@@ -4,31 +4,18 @@ title = 'Huzef UR Rahman'
 theme = "PaperMod"
 
 [params]
-    # This removes the "Profile Mode" (big icons) and uses the "List" style
-    homeInfoParams = { Title = "Huzef UR Rahman", Content = "I am a Materials and Design Engineer." }
-    
-    # Clean typography settings
+    defaultTheme = "auto" 
+    disableThemeToggle = false
     ShowCodeCopyButtons = true
     ShowReadingTime = true
     ShowShareButtons = false
     ShowBreadCrumbs = true
-    align= "center"
-    
-    # This gives it that crisp, paper-white look
-    defaultTheme = "auto" 
-    disableThemeToggle = false
 
     [params.profileMode]
-    enabled = true
-    title = "Your Name"
-    subtitle = "Software Engineer, Pilot, etc. (Your Mitchell-style bio goes here)"
-    imageUrl = "https://website-29s.pages.dev/images/avatar.png" # Optional
-    imageWidth = 120
-    imageHeight = 120
-    buttons = [
-        { name = "GitHub", url = "https://github.com/ScioKNYT" },
-        { name = "Twitter", url = "https://twitter.com/yourhandle" }
-    ]
+        enabled = true
+        title = "Huzef UR Rahman"
+        subtitle = "Materials and Design Engineer. (Add more of your bio here)"
+        # imageUrl = "https://website-29s.pages.dev/images/avatar.png" # Uncomment when you have an image
 
 [[menu.main]]
     name = "About"
@@ -40,7 +27,7 @@ theme = "PaperMod"
     weight = 20
 [[menu.main]]
     name = "Thoughts"
-    url = "/projects/"
+    url = "/thoughts/"
     weight = 30
 [[menu.main]]
     name = "Miscellany"
