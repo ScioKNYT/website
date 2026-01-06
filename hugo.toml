@@ -4,7 +4,6 @@ title = 'Huzef UR Rahman'
 theme = "PaperMod"
 
 [params]
-    title = "HR"
     defaultTheme = "auto" 
     disableThemeToggle = false
     ShowCodeCopyButtons = true
