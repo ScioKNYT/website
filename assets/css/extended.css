@@ -1,10 +1,3 @@
-/* 1. Reset Body for Mitchell's Typography */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fff;
-    color: #1d1d1f;
-}
-
 /* 2. Turn Header into a Left Sidebar (Desktop Only) */
 @media screen and (min-width: 900px) {
     .header {
