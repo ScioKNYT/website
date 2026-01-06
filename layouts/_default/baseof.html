@@ -5,45 +5,41 @@
   <link rel="stylesheet" href="{{ "/css/extended.css" | relURL }}" />
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="logo">
-        <a href="{{ .Site.BaseURL }}">
-          {{- if .Site.Params.profileMode.imageUrl }}
-            <img src="{{ .Site.Params.profileMode.imageUrl | relURL }}" alt="{{ .Site.Title }}">
-            <span>{{ .Site.Title }}</span>
-          {{- else }}
-            <span>{{ .Site.Title }}</span>
-          {{- end }}
-        </a>
-      </div>
-      <nav class="nav">
-        <ul id="menu">
-          {{ range .Site.Menus.main }}
-            <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-          {{ end }}
-        </ul>
-      </nav>
-    </header>
-
-    <main class="main">
-      {{ if and .IsHome (isset .Site.Params "profileMode") }}
-        <h1>{{ .Site.Params.profileMode.title | default .Site.Title }}</h1>
-        {{ .Content }}
-      {{ else }}
-        <h1>{{ .Title }}</h1>
-        {{ .Content }}
-      {{ end }}
-
-      <footer class="footer">
-        {{ if .Site.Params.footer }}
-          {{ .Site.Params.footer | safeHTML }}
-        {{ else }}
-          &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+  <aside class="header">
+    <div class="logo">
+      <a href="{{ .Site.BaseURL }}">
+        {{- if .Site.Params.profileMode.imageUrl }}
+          <img src="{{ .Site.Params.profileMode.imageUrl | relURL }}" alt="{{ .Site.Title }}">
+        {{- end }}
+        <span>{{ .Site.Title }}</span>
+      </a>
+    </div>
+    <nav class="nav">
+      <ul id="menu">
+        {{ range .Site.Menus.main }}
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
         {{ end }}
-      </footer>
-    </main>
-  </div>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main">
+    {{ if and .IsHome (isset .Site.Params "profileMode") }}
+      <h1>{{ .Site.Params.profileMode.title | default .Site.Title }}</h1>
+      {{ .Content }}
+    {{ else }}
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+    {{ end }}
+
+    <footer class="footer">
+      {{ if .Site.Params.footer }}
+        {{ .Site.Params.footer | safeHTML }}
+      {{ else }}
+        &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+      {{ end }}
+    </footer>
+  </main>
 
   <button id="theme-toggle" aria-label="Toggle theme">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -51,30 +47,16 @@
     </svg>
   </button>
 
-  <!-- Keep PaperMod's JS (theme, etc.) -->
-  {{ if not .Site.Params.disableThemeToggle }}
-    <script>
-      {{- if (or (eq .Site.Params.defaultTheme "dark") (eq .Site.Params.defaultTheme "auto")) }}
-        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (isDark || {{ eq .Site.Params.defaultTheme "dark" }}) {
-          document.body.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-        }
-      {{- end }}
-      function toggleTheme() {
-        document.body.classList.toggle('dark');
-        const isDark = document.body.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        document.querySelectorAll('img').forEach(img => {
-          if (img.alt === 'theme-icon') img.src = isDark ? '{{ "icons/sun.svg" | absURL }}' : '{{ "icons/moon.svg" | absURL }}';
-        });
-      }
-      document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-      const saved = localStorage.getItem('theme');
-      if (saved) {
-        document.body.classList.toggle('dark', saved === 'dark');
-      }
-    </script>
-  {{ end }}
+  <script>
+    // Mitchell doesn't have theme toggle, but PaperMod does — let's enable it
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
 </body>
 </html>
