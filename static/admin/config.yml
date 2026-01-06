@@ -17,18 +17,25 @@ public_folder: "/images"
 
 collections:
   - name: "posts"
-    label: "Blog Posts"
+    label: "Writings"
     folder: "content/posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    preview_path: 'posts/{{year}}-{{month}}-{{day}}-{{slug}}'
-    editor:
-      preview: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"} # For SEO snippets
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - {label: "Categories", name: "categories", widget: "list"}
-      - {label: "Draft", name: "draft", widget: "boolean", default: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "thoughts"
+    label: "Thoughts"
+    folder: "content/thoughts"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+
+  - name: "miscellany"
+    label: "Miscellany"
+    folder: "content/misc"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
