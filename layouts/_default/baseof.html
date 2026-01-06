@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode | default "en" }}">
-  <head>
-    {{ partial "head.html" . }}
-    <!-- Your extended.css must be loaded after PaperMod's CSS -->
-    <link rel="stylesheet" href="{{ "extended.css" | absURL }}" />
-  </head>
-  <body>
-    <div class="container">
-      <header class="header">
-        <div class="logo">
-          <a href="{{ .Site.BaseURL }}">
-            {{ if .Site.Params.logo }}
-              <img src="{{ .Site.Params.logo | absURL }}" alt="{{ .Site.Title }}" />
-            {{ else }}
-              <span>{{ .Site.Title }}</span>
-            {{ end }}
-          </a>
-        </div>
-        <nav class="nav">
-          <ul id="menu">
-            {{ range .Site.Menus.main }}
-              <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-            {{ end }}
-          </ul>
-        </nav>
-      </header>
-
-      <main class="main">
-        {{ if not .IsHome }}
-          <h1>{{ .Title }}</h1>
-        {{ end }}
-        {{ block "main" . }}{{ end }}
-        <footer class="footer">
-          {{ if .Site.Params.footer }}
-            {{ .Site.Params.footer | safeHTML }}
-          {{ else }}
-            &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+<head>
+  {{ partial "head.html" . }}
+  <link rel="stylesheet" href="{{ "/css/extended.css" | relURL }}" />
+</head>
+<body>
+  <div class="container">
+    <aside class="header">
+      <div class="logo">
+        <a href="{{ .Site.BaseURL }}">
+          {{- if .Site.Params.profileMode.imageUrl }}
+            <img src="{{ .Site.Params.profileMode.imageUrl | relURL }}" alt="{{ .Site.Title }}" />
+          {{- else }}
+            <span>{{ .Site.Title }}</span>
+          {{- end }}
+        </a>
+      </div>
+      <nav class="nav">
+        <ul id="menu">
+          {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
           {{ end }}
-        </footer>
-      </main>
-    </div>
+        </ul>
+      </nav>
+    </aside>
 
-    <!-- Theme toggle button -->
-    <button id="theme-toggle" aria-label="Toggle theme">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-      </svg>
-    </button>
+    <main class="main">
+      {{ if and .IsHome (isset .Site.Params "profileMode") }}
+        <!-- Homepage: render bio like Mitchell -->
+        <h1>{{ .Site.Params.profileMode.title | default .Site.Title }}</h1>
+        {{ .Content }}
+      {{ else }}
+        <!-- Other pages: use normal title -->
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+      {{ end }}
 
-    {{ partial "footer.html" . }}
-  </body>
+      <footer class="footer">
+        {{ if .Site.Params.footer }}
+          {{ .Site.Params.footer | safeHTML }}
+        {{ else }}
+          &copy; {{ now.Format "2006" }} {{ .Site.Title }}
+        {{ end }}
+      </footer>
+    </main>
+  </div>
+
+  <button id="theme-toggle" aria-label="Toggle theme">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  {{ partial "footer.html" . }}
+</body>
 </html>
