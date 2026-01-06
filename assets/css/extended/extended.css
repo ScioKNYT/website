@@ -1,187 +1,179 @@
 /* =========================================
-   1. GLOBAL VARIABLES & TYPOGRAPHY
+   1. GLOBAL VARIABLES & RESET
    ========================================= */
 :root {
-    --nav-width: 260px;
+    --nav-width: 200px; /* Mitchell's sidebar is actually quite narrow */
+    --content-width: 650px;
+    --gap: 60px; /* Space between sidebar and content */
 }
 
-html, body {
+html {
+    overflow-y: scroll; /* Force scrollbar to prevent layout shift */
+}
+
+body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-size: 15px;
+    line-height: 1.6;
     background-color: var(--theme) !important;
     color: var(--primary) !important;
     margin: 0;
-    overflow-x: hidden; /* Prevents side-scrolling */
-    height: 100%;
     padding: 0;
+    width: 100%;
+    min-height: 100vh;
 }
 
-* {
-    box-sizing: border-box !important;
-}
-
-/* Hide logo text globally (Mitchell Style) */
+/* Hide theme-generated text in logo */
 .logo a { font-size: 0 !important; }
-.logo img { display: block !important; max-height: 40px; width: auto; }
 .logo a span { display: none !important; }
+.logo img { display: block !important; width: 40px; height: auto; }
 
 /* =========================================
-   2. DESKTOP LAYOUT (Min-Width: 900px)
+   2. DESKTOP LAYOUT (Centered - Mitchell Style)
    ========================================= */
 @media screen and (min-width: 900px) {
-    /* Sidebar Configuration */
+    
+    /* THE MAGIC: Turn body into a flex container to center everything */
+    body {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        position: relative !important;
+    }
+
+    /* 1. SIDEBAR (Left Column) */
     .header {
-        position: fixed !important;
+        position: sticky !important; /* Stays in view but respects centering */
         top: 0 !important;
-        left: 0 !important;
         width: var(--nav-width) !important;
-        height: 100% !important;
-        background: var(--theme) !important;
-        padding: 60px 40px !important;
+        height: 100vh !important;
+        padding: 60px 0 0 0 !important; /* Top padding matches Main */
+        background: transparent !important;
+        border: none !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important;
-        z-index: 100 !important;
-        border: none !important;
-        overflow: hidden !important;
+        flex-shrink: 0 !important; /* Don't shrink */
+        margin-right: var(--gap) !important; /* The gap between sidebar and text */
+        left: auto !important; /* Reset fixed positioning */
     }
 
-    /* Navigation Container */
-    .nav {
-        display: block !important;
-        width: 100% !important;
-        max-width: var(--nav-width) !important;
-    }
-
+    /* Logo area */
     .logo {
-        margin-bottom: 30px !important;
-        display: flex !important;
-        gap: 15px !important;
+        margin-bottom: 40px !important; /* Space between Logo and Menu */
+        display: block !important;
     }
 
+    /* Navigation Menu */
+    .nav { width: 100% !important; }
     #menu {
         display: flex !important;
         flex-direction: column !important;
     }
-    #menu li { margin: 8px 0 !important; }
-
-    /* Theme Toggle: Pinned Top-Right */
-    #theme-toggle {
-        position: fixed !important;
-        top: 40px !important;
-        right: 40px !important;
-        left: auto !important;
-        margin: 0 !important;
-        z-index: 1001 !important;
-    }
-
-    /* Main Content: Right of Sidebar */
+    #menu li { margin: 6px 0 !important; }
+    
+    /* 2. MAIN CONTENT (Right Column) */
     .main {
-        margin-left: var(--nav-width) !important;
-        margin-right: auto !important;
-        max-width: 700px !important;
-        padding: 65px 40px !important;
-        min-height: auto !important;
-        padding-bottom: 100px !important;
+        width: var(--content-width) !important;
+        max-width: var(--content-width) !important;
+        padding: 60px 0 100px 0 !important; /* Top padding matches Header */
+        margin: 0 !important;
+        flex-shrink: 0 !important;
     }
 
-    /* Footer: Pinned Bottom-Left */
+    /* Align Title with Logo */
+    .main h1, .page-header h1 {
+        margin-top: 0 !important;
+        line-height: 1.2 !important;
+        font-size: 28px !important;
+        margin-bottom: 35px !important; /* Pushes text down to align with "About" */
+    }
+
+    /* 3. THEME TOGGLE (Top Right of Content) */
+    /* We place it absolutely relative to the centered body */
+    #theme-toggle {
+        position: fixed !important; 
+        top: 65px !important; /* Aligns visually with the center of the Logo */
+        left: calc(50% + 350px) !important; /* Math: Center + Half Content Width */
+        right: auto !important;
+        margin: 0 !important;
+    }
+
+    /* 4. FOOTER (Pinned to bottom of Sidebar) */
     .footer {
         position: fixed !important;
-        bottom: 20px !important;
-        left: 40px !important;
-        width: auto !important;
-        z-index: 101 !important;
-        background: transparent !important;
-        font-size: 11px !important;
+        bottom: 40px !important;
+        /* Calculate left position based on centering */
+        /* Since we can't easily calc fixed left in flex, we use sticky logic */
+        /* Workaround: Attach it to the sidebar container which is sticky */
+        left: calc(50% - 440px) !important; /* Center - (Sidebar + Gap + Half Content) */
         text-align: left !important;
+        width: var(--nav-width) !important;
         padding: 0 !important;
+        font-size: 12px !important;
+        opacity: 0.5;
+        background: transparent !important;
+        pointer-events: none; /* Lets you click through if needed */
     }
+    .footer span { pointer-events: auto; }
 }
 
 /* =========================================
-   3. MOBILE LAYOUT (Max-Width: 899px)
+   3. MOBILE LAYOUT (Clean Stack)
    ========================================= */
 @media screen and (max-width: 899px) {
-    /* Reset Header to be standard top block */
+    body {
+        display: block !important;
+    }
+
     .header {
         position: relative !important;
-        height: auto !important;
         width: 100% !important;
-        padding: 30px 20px 10px 20px !important; /* Top/Side Padding */
-        display: flex !important;
-        flex-direction: column !important;
+        height: auto !important;
+        padding: 30px 20px 0 20px !important;
         background: var(--theme) !important;
-        overflow: visible !important;
+        margin-bottom: 40px !important;
     }
 
-    /* Toggle: Absolute Top-Right */
-    #theme-toggle {
-        position: absolute !important;
-        top: 30px !important; /* Aligns with Logo top */
-        right: 20px !important; /* Aligns with screen edge */
-        bottom: auto !important;
-        left: auto !important;
-        margin: 0 !important;
-    }
-
-    /* Logo: Top Left */
+    /* Logo & Toggle Row */
     .logo {
-        margin-bottom: 20px !important; /* Space between logo and menu links */
+        margin-bottom: 20px !important;
         width: auto !important;
     }
-
-    /* Menu: Horizontal List (No Scrolling) */
-    .nav { 
-        display: block !important; 
-        width: 100% !important;
-        overflow: visible !important; /* Kills the side scroll */
-    }
     
+    #theme-toggle {
+        position: absolute !important;
+        top: 35px !important;
+        right: 20px !important;
+        left: auto !important;
+    }
+
+    /* Horizontal Menu */
+    .nav { overflow: visible !important; }
     #menu {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: wrap !important;
-        justify-content: flex-start !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        white-space: normal !important;
+        gap: 20px !important;
     }
+    #menu li { margin: 0 !important; display: inline-block !important; }
 
-    #menu li {
-        margin: 0 20px 0 0 !important; /* Spacing between "About Writing Misc" */
-        display: inline-block !important;
-    }
-
-    /* Content: Simple Vertical Stack */
     .main {
-        margin-left: 0 !important;
-        padding: 10px 20px 40px 20px !important;
+        padding: 0 20px 60px 20px !important;
         width: 100% !important;
         max-width: 100% !important;
     }
 
-    /* Footer: Normal Flow at Bottom */
     .footer {
         position: relative !important;
-        margin: 0 !important;
-        padding: 20px !important;
         text-align: left !important;
+        padding: 20px !important;
         width: 100% !important;
-        bottom: auto !important;
         left: auto !important;
+        bottom: auto !important;
     }
 }
 
-/* Cleanup: Hide "Powered by" */
-.footer > span:last-child {
-    display: none !important;
-}
-
-/* Cleanup: Home Page Profile */
-.profile_inner {
-    text-align: left !important;
-    margin-top: 0 !important;
-    padding: 0 !important;
-}
+/* Cleanup */
+.footer > span:last-child { display: none !important; }
+.profile_inner { text-align: left !important; margin: 0 !important; }
 .social-icons { justify-content: flex-start !important; }
