@@ -2,13 +2,14 @@
    1. GLOBAL VARIABLES & RESET
    ========================================= */
 :root {
-    --nav-width: 200px; /* Mitchell's sidebar is actually quite narrow */
-    --content-width: 650px;
-    --gap: 60px; /* Space between sidebar and content */
+    --nav-width: 200px;
+    --content-width: 650px; /* The width of your text column */
+    --gap: 60px;            /* Space between sidebar and text */
+    --top-spacer: 120px;    /* How far down the page starts (Breathing Room) */
 }
 
 html {
-    overflow-y: scroll; /* Force scrollbar to prevent layout shift */
+    overflow-y: scroll;
 }
 
 body {
@@ -23,17 +24,17 @@ body {
     min-height: 100vh;
 }
 
-/* Hide theme-generated text in logo */
+/* Hide theme text, show logo image */
 .logo a { font-size: 0 !important; }
 .logo a span { display: none !important; }
 .logo img { display: block !important; width: 40px; height: auto; }
 
 /* =========================================
-   2. DESKTOP LAYOUT (Centered - Mitchell Style)
+   2. DESKTOP LAYOUT (Centered Card)
    ========================================= */
 @media screen and (min-width: 900px) {
     
-    /* THE MAGIC: Turn body into a flex container to center everything */
+    /* Center the entire layout (Sidebar + Content) in the middle of screen */
     body {
         display: flex !important;
         justify-content: center !important;
@@ -41,113 +42,111 @@ body {
         position: relative !important;
     }
 
-    /* 1. SIDEBAR (Left Column) */
+    /* --- SIDEBAR (Left) --- */
     .header {
-        position: sticky !important; /* Stays in view but respects centering */
+        position: sticky !important;
         top: 0 !important;
         width: var(--nav-width) !important;
         height: 100vh !important;
-        padding: 60px 0 0 0 !important; /* Top padding matches Main */
+        /* Pushes logo down to match the new breathing room */
+        padding: var(--top-spacer) 0 0 0 !important; 
         background: transparent !important;
         border: none !important;
         display: flex !important;
         flex-direction: column !important;
-        flex-shrink: 0 !important; /* Don't shrink */
-        margin-right: var(--gap) !important; /* The gap between sidebar and text */
-        left: auto !important; /* Reset fixed positioning */
+        flex-shrink: 0 !important;
+        margin-right: var(--gap) !important;
+        left: auto !important;
     }
 
-    /* Logo area */
     .logo {
-        margin-bottom: 40px !important; /* Space between Logo and Menu */
+        margin-bottom: 40px !important;
         display: block !important;
     }
 
-    /* Navigation Menu */
-    .nav { width: 100% !important; }
+    /* Align "About" with the first paragraph of content, not the Title */
     #menu {
         display: flex !important;
         flex-direction: column !important;
+        margin-top: 10px !important; 
     }
     #menu li { margin: 6px 0 !important; }
     
-    /* 2. MAIN CONTENT (Right Column) */
+    /* --- MAIN CONTENT (Right) --- */
     .main {
         width: var(--content-width) !important;
         max-width: var(--content-width) !important;
-        padding: 60px 0 100px 0 !important; /* Top padding matches Header */
+        padding: var(--top-spacer) 0 100px 0 !important; /* Top padding matches Header */
         margin: 0 !important;
         flex-shrink: 0 !important;
     }
 
-    /* Align Title with Logo */
+    /* ALIGNMENT FIX: Ensure Name (H1) aligns exactly with Logo top */
     .main h1, .page-header h1 {
-        margin-top: 0 !important;
-        line-height: 1.2 !important;
+        margin-top: -5px !important; /* Tiny tweak to align baseline with logo image */
+        line-height: 1.1 !important;
         font-size: 28px !important;
-        margin-bottom: 35px !important; /* Pushes text down to align with "About" */
+        margin-bottom: 35px !important;
+        font-weight: 700 !important;
     }
 
-    /* 3. THEME TOGGLE (Top Right of Content) */
-    /* We place it absolutely relative to the centered body */
+    /* --- THEME TOGGLE (Top Right) --- */
     #theme-toggle {
         position: fixed !important; 
-        top: 65px !important; /* Aligns visually with the center of the Logo */
-        left: calc(50% + 350px) !important; /* Math: Center + Half Content Width */
+        /* Aligns with the new top spacer + visual adjustment */
+        top: calc(var(--top-spacer) + 5px) !important; 
+        /* Math: Center of screen + Half of total width (Content/2 + Gap + Sidebar) */
+        left: calc(50% + 325px) !important; 
         right: auto !important;
         margin: 0 !important;
     }
 
-    /* 4. FOOTER (Pinned to bottom of Sidebar) */
+    /* --- FOOTER (Bottom Center of Content Area) --- */
     .footer {
         position: fixed !important;
-        bottom: 40px !important;
-        /* Calculate left position based on centering */
-        /* Since we can't easily calc fixed left in flex, we use sticky logic */
-        /* Workaround: Attach it to the sidebar container which is sticky */
-        left: calc(50% - 440px) !important; /* Center - (Sidebar + Gap + Half Content) */
-        text-align: left !important;
-        width: var(--nav-width) !important;
+        bottom: 30px !important;
+        width: var(--content-width) !important; /* Constrain width to text column */
+        /* CALCULATION:
+           We need the center of the CONTENT column, not the screen.
+           The content column is offset to the right because of the sidebar.
+           Center of Page + 130px shifts it exactly to the middle of the text block.
+        */
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Centers element on itself */
+        margin-left: 130px !important; /* The Magic Number: (Sidebar + Gap) / 2 */
+        
+        text-align: center !important;
         padding: 0 !important;
         font-size: 12px !important;
         opacity: 0.5;
         background: transparent !important;
-        pointer-events: none; /* Lets you click through if needed */
+        pointer-events: none;
     }
     .footer span { pointer-events: auto; }
 }
 
 /* =========================================
-   3. MOBILE LAYOUT (Clean Stack)
+   3. MOBILE LAYOUT
    ========================================= */
 @media screen and (max-width: 899px) {
-    body {
-        display: block !important;
-    }
-
+    body { display: block !important; }
+    
     .header {
         position: relative !important;
         width: 100% !important;
         height: auto !important;
-        padding: 30px 20px 0 20px !important;
-        background: var(--theme) !important;
+        padding: 40px 20px 0 20px !important;
         margin-bottom: 40px !important;
     }
 
-    /* Logo & Toggle Row */
-    .logo {
-        margin-bottom: 20px !important;
-        width: auto !important;
-    }
+    .logo { margin-bottom: 20px !important; width: auto !important; }
     
     #theme-toggle {
         position: absolute !important;
-        top: 35px !important;
+        top: 45px !important; /* Matches mobile padding */
         right: 20px !important;
-        left: auto !important;
     }
 
-    /* Horizontal Menu */
     .nav { overflow: visible !important; }
     #menu {
         display: flex !important;
@@ -165,15 +164,22 @@ body {
 
     .footer {
         position: relative !important;
-        text-align: left !important;
+        text-align: center !important;
         padding: 20px !important;
         width: 100% !important;
         left: auto !important;
         bottom: auto !important;
+        margin-left: 0 !important;
+        transform: none !important;
     }
 }
 
 /* Cleanup */
 .footer > span:last-child { display: none !important; }
-.profile_inner { text-align: left !important; margin: 0 !important; }
-.social-icons { justify-content: flex-start !important; }
+.profile_inner { text-align: center !important; margin: 0 !important; }
+/* Re-align bio text to center on desktop if desired, or keep left? 
+   Mitchell's is left-aligned text, but centered structure. 
+   If you want the text itself centered, remove 'text-align: left' below. */
+@media screen and (min-width: 900px) {
+    .profile_inner { text-align: left !important; }
+}
