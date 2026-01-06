@@ -1,60 +1,61 @@
 /* 2. Turn Header into a Left Sidebar (Desktop Only) */
 @media screen and (min-width: 900px) {
     .header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 240px; /* Mitchell's sidebar width */
-        height: 100vh;
-        border-right: 1px solid #eaeaea;
-        padding: 40px 20px;
-        background: #fff;
-        z-index: 100;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 240px !important;
+        height: 100vh !important;
+        border-right: 1px solid #eaeaea !important;
+        padding: 40px 20px !important;
+        background: #fff !important;
+        display: block !important;
+        z-index: 100 !important;
     }
 
     .nav {
-        display: block; /* Stack links vertically */
+        display: block !important; /* Stack links vertically */
     }
 
     #menu {
-        display: block;
-        margin-top: 40px;
+        display: block !important;
+        margin-top: 40px !important;
     }
 
     #menu li {
-        margin: 15px 0;
-        display: block;
+        margin: 15px 0 !important;
+        display: block !important;
     }
 
     #menu a {
-        font-size: 16px;
-        color: #666;
-        transition: color 0.2s;
+        font-size: 16px !important;
+        color: #666 !important;
+        transition: color 0.2s !important;
     }
 
     #menu a:hover {
-        color: #000;
+        color: #000 !important;
     }
 
     /* 3. Push Main Content to the Right */
     .main {
-        margin-left: 300px; /* Sidebar width + gap */
-        max-width: 700px;
-        padding-top: 40px;
+        margin-left: 300px !important; /* Sidebar width + gap */
+        max-width: 700px !important;
+        padding-top: 40px !important;
     }
 
     /* 4. Position the Theme Toggle at the bottom of the sidebar */
     .theme-toggle {
-        position: absolute;
-        bottom: 40px;
-        left: 20px;
+        position: absolute !important;
+        bottom: 40px !important;
+        left: 20px !important;
     }
 }
 
 /* 5. Mobile Adjustments (Keep it at the top) */
 @media screen and (max-width: 899px) {
     .nav {
-        justify-content: space-between;
+        justify-content: space-between !important;
     }
 }
 body {
@@ -71,7 +72,7 @@ h1 {
 
 /* Removes the theme toggle from the sidebar and places it at the bottom left */
 .theme-toggle {
-    position: fixed;
-    bottom: 20px;
-    left: 40px;
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 40px !important;
 }
