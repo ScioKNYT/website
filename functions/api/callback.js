@@ -1,68 +1,78 @@
+function renderBody(status, content) {
+    const html = `
+    <script>
+      const receiveMessage = (message) => {
+        window.opener.postMessage(
+          'authorization:github:${status}:${JSON.stringify(content)}',
+          message.origin
+        );
+        window.removeEventListener("message", receiveMessage, false);
+      }
+      window.addEventListener("message", receiveMessage, false);
+      window.opener.postMessage("authorizing:github", "*");
+    </script>
+    `;
+    const blob = new Blob([html]);
+    return blob;
+}
+
 export async function onRequest(context) {
-  const { env } = context;
-  const { searchParams } = new URL(context.request.url);
-  const code = searchParams.get('code');
+    const {
+        request, // same as existing Worker API
+        env, // same as existing Worker API
+        params, // if filename includes [id] or [[path]]
+        waitUntil, // same as ctx.waitUntil in existing Worker API
+        next, // used for middleware or to fetch assets
+        data, // arbitrary space for passing data between middlewares
+    } = context;
 
-  try {
-    const response = await fetch('https://github.com/login/oauth/access_token', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        'user-agent': 'cloudflare-pages-static-cms-oauth',
-        accept: 'application/json',
-      },
-      body: JSON.stringify({
-        client_id: env.GITHUB_CLIENT_ID,
-        client_secret: env.GITHUB_CLIENT_SECRET,
-        code,
-      }),
-    });
+    const client_id = env.GITHUB_CLIENT_ID;
+    const client_secret = env.GITHUB_CLIENT_SECRET;
 
-    const result = await response.json();
+    try {
+        const url = new URL(request.url);
+        const code = url.searchParams.get('code');
+        const response = await fetch(
+            'https://github.com/login/oauth/access_token',
+            {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    'user-agent': 'cloudflare-functions-github-oauth-login-demo',
+                    'accept': 'application/json',
+                },
+                body: JSON.stringify({ client_id, client_secret, code }),
+            },
+        );
+        const result = await response.json();
+        if (result.error) {
+            return new Response(renderBody('error', result), {
+                headers: {
+                    'content-type': 'text/html;charset=UTF-8',
+                },
+                status: 401 
+            });
+        }
+        const token = result.access_token;
+        const provider = 'github';
+        const responseBody = renderBody('success', {
+            token,
+            provider,
+        });
+        return new Response(responseBody, { 
+            headers: {
+                'content-type': 'text/html;charset=UTF-8',
+            },
+            status: 200 
+        });
 
-    if (result.error) {
-      return new Response(`GitHub Error: ${result.error_description || result.error}`, { status: 500 });
+    } catch (error) {
+        console.error(error);
+        return new Response(error.message, {
+            headers: {
+                'content-type': 'text/html;charset=UTF-8',
+            },
+            status: 500,
+        });
     }
-
-    return new Response(
-      `<!DOCTYPE html>
-      <html>
-        <body>
-          <script>
-            (function() {
-              const res = ${JSON.stringify({
-                token: result.access_token,
-                provider: 'github',
-                site_id: 'website-29s.pages.dev'
-              })};
-              
-              // Standard message
-              const message = "authorization:github:success:" + JSON.stringify(res);
-              
-              if (window.opener) {
-                // Method 1: Standard Decap Handshake
-                window.opener.postMessage(message, "*");
-                
-                // Method 2: Manual storage injection (The "Force" method)
-                try {
-                  window.opener.localStorage.setItem('decap-cms-user', JSON.stringify(res));
-                } catch (e) {
-                  console.error("Local storage failed", e);
-                }
-
-                console.log("Handshake sent.");
-                setTimeout(() => { window.close(); }, 1000);
-              } else {
-                document.body.innerHTML = "Main window not found. Please refresh the admin page and try again.";
-              }
-            })();
-          </script>
-          <p>Login successful! Sending data to main window...</p>
-        </body>
-      </html>`,
-      { headers: { 'content-type': 'text/html' } }
-    );
-  } catch (err) {
-    return new Response(`Server Error: ${err.message}`, { status: 500 });
-  }
 }
