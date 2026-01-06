@@ -1,3 +1,43 @@
+/* Force Light Mode Styles for the Sidebar */
+:root {
+    --theme: #ffffff;
+    --entry: #ffffff;
+    --main-bg: #ffffff;
+}
+
+@media screen and (min-width: 900px) {
+    /* This targets the actual header container in PaperMod */
+    .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 250px !important;
+        height: 100vh !important;
+        background: #ffffff !important;
+        border-right: 1px solid #eee !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        padding: 40px !important;
+        z-index: 1000 !important;
+    }
+
+    .nav {
+        display: block !important;
+        width: 100% !important;
+    }
+
+    #menu {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .main {
+        margin-left: 280px !important;
+        max-width: 700px !important;
+        padding: 40px !important;
+    }
+}
 /* 2. Turn Header into a Left Sidebar (Desktop Only) */
 @media screen and (min-width: 900px) {
     .header {
