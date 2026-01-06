@@ -11,6 +11,10 @@ theme = "PaperMod"
     ShowPostNavLinks = false
     ShowShareButtons = false
     ShowBreadCrumbs = false
+    hideFooter = false
+    showFullTextinRoot = false
+    # This specifically removes the "Powered by" lines in PaperMod
+    disableFingerprinting = true
 
     [params.profileMode]
         enabled = true
