@@ -8,9 +8,10 @@ theme = "PaperMod"
     defaultTheme = "auto" 
     disableThemeToggle = false
     ShowCodeCopyButtons = true
-    ShowReadingTime = true
+    ShowReadingTime = false
+    ShowPostNavLinks = false
     ShowShareButtons = false
-    ShowBreadCrumbs = true
+    ShowBreadCrumbs = false
 
     [params.profileMode]
         enabled = true
