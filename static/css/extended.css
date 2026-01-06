@@ -71,10 +71,11 @@ body {
       }
 
     .header {
-        width: var(--sidebar-width) !important;
+       width: var(--sidebar-width) !important;
        flex-shrink: 0 !important;
        display: flex !important;
        flex-direction: column !important;
+       justify-content: flex-start !important; /* ← This pushes content to TOP */
        position: sticky !important;
        top: var(--top-spacer) !important;
        padding: 0 !important;
@@ -84,7 +85,8 @@ body {
     }
 
     .logo {
-        margin-bottom: 40px !important;
+       margin-bottom: 40px !important;
+       margin-top: 0 !important;
     }
 
     #menu {
@@ -94,6 +96,7 @@ body {
         padding: 0 !important;
         margin: 0 !important;
         gap: 6px !important;
+        align-self: flex-start !important;
     }
 
     #menu li {
