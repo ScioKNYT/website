@@ -79,14 +79,15 @@ body {
         padding: 85px 60px !important;
         background: var(--theme) !important;
     }
-    .logo a span {
+    
+    .logo span {
     display: none !important;
     }
+    
     .logo img {
     max-height: 40px; /* Adjust as needed */
     width: auto;
-}
-    
+    }    
 }
 
 /* 4. Cleanup PaperMod Cards */
