@@ -1,10 +1,21 @@
-/* 1. Hide the text name next to the logo icon */
-.logo a span, .logo .logo-name {
-    display: none !important;
+/* 1. Hide ALL text inside the logo link, only allow the image */
+.logo a {
+    font-size: 0 !important; /* Makes any text nodes disappear */
+    color: transparent !important;
 }
-/* 1. Global Typography & Variable Setup */
-:root {
-    --nav-width: 260px;
+
+.logo a span, 
+.logo a .logo-name,
+.logo a:after {
+    display: none !important;
+    content: none !important;
+}
+
+/* 2. Reset the image so it's not affected by the font-size 0 */
+.logo img {
+    display: inline-block !important;
+    max-height: 40px;
+    width: auto;
 }
 
 body {
@@ -59,6 +70,8 @@ body {
         margin-left: 10px !important; /* Adjust this for the perfect gap */
         padding: 0 !important;
         position: static !important; /* Removes it from the bottom of the screen */
+        display: flex !important;
+        align-items: center !important;
     }
 
     #menu {
@@ -88,16 +101,7 @@ body {
         max-width: 720px !important;
         padding: 85px 60px !important;
         background: var(--theme) !important;
-    }
-    
-    .logo a span {
-    display: none !important;
-    }
-    
-    .logo img {
-    max-height: 40px; /* Adjust as needed */
-    width: auto;
-    }    
+    } 
 }
 
 /* 4. Cleanup PaperMod Cards */
