@@ -1,6 +1,6 @@
 baseURL = 'https://website-29s.pages.dev'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Huzef UR Rahman'
 theme = "PaperMod"
 
 [params]
@@ -10,8 +10,39 @@ theme = "PaperMod"
     # Clean typography settings
     ShowCodeCopyButtons = true
     ShowReadingTime = true
+    ShowShareButtons = false
     ShowBreadCrumbs = true
+    align= "center"
     
     # This gives it that crisp, paper-white look
     defaultTheme = "auto" 
     disableThemeToggle = false
+
+    [params.profileMode]
+    enabled = true
+    title = "Your Name"
+    subtitle = "Software Engineer, Pilot, etc. (Your Mitchell-style bio goes here)"
+    imageUrl = "https://website-29s.pages.dev/images/avatar.png" # Optional
+    imageWidth = 120
+    imageHeight = 120
+    buttons = [
+        { name = "GitHub", url = "https://github.com/ScioKNYT" },
+        { name = "Twitter", url = "https://twitter.com/yourhandle" }
+    ]
+
+[[menu.main]]
+    name = "About"
+    url = "/"
+    weight = 10
+[[menu.main]]
+    name = "Writings"
+    url = "/posts/"
+    weight = 20
+[[menu.main]]
+    name = "Thoughts"
+    url = "/projects/"
+    weight = 30
+[[menu.main]]
+    name = "Miscellany"
+    url = "/misc/"
+    weight = 40
