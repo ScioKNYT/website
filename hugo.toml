@@ -4,7 +4,7 @@ title = 'HR'
 theme = "PaperMod"
 
 [params]
-    title = "Huzef UR Rahman"
+    title = "HR"
     defaultTheme = "auto" 
     disableThemeToggle = false
     ShowCodeCopyButtons = true
