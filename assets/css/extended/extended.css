@@ -80,3 +80,23 @@ body {
 }
 
 .social-icons { justify-content: flex-start !important; }
+
+/* Align Footer to the Bottom Left of the content area */
+.footer {
+    padding: 40px 0 !important;
+    margin-left: var(--nav-width) !important; /* Matches sidebar width */
+    max-width: 700px !important;              /* Matches content width */
+    text-align: left !important;               /* Aligns text to the left */
+    padding-left: 40px !important;             /* Matches main content padding */
+    font-size: 12px !important;
+    opacity: 0.6;                              /* Makes it subtle like Mitchell's */
+}
+
+/* On mobile, reset the footer to be centered/normal */
+@media screen and (max-width: 899px) {
+    .footer {
+        margin-left: 0 !important;
+        text-align: center !important;
+        padding-left: 0 !important;
+    }
+}
