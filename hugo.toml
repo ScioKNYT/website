@@ -13,5 +13,5 @@ theme = "PaperMod"
     ShowBreadCrumbs = true
     
     # This gives it that crisp, paper-white look
-    defaultTheme = "light" 
-    disableThemeToggle = true
+    defaultTheme = "auto" 
+    disableThemeToggle = false
