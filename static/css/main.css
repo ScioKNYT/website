@@ -306,7 +306,7 @@ body {
     display: none;
   }
   .layout {
-    padding: 0 20px 60px;
+    padding: 60px 20px 60px;
     max-width: 100%;
   }
   #theme-toggle {
@@ -314,8 +314,7 @@ body {
     top: 16px;
     right: 20px;
     }
-  }
-
+  
   .header {
     margin-bottom: 20px;
   }
