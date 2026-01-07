@@ -14,7 +14,8 @@ title = 'Huzef UR Rahman'
     hideFooter = false
     showFullTextinRoot = false
     description = "Materials and Design Engineer."
-    logoImage = "/images/logo.png"
+    logoImage = "logo_bl.svg"      # The default Black logo
+    logoImageDark = "logo_wh.svg"  # The White logo for dark themes
     # This specifically removes the "Powered by" lines in PaperMod
     disableFingerprinting = true
 
