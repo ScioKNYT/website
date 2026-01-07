@@ -27,8 +27,13 @@
       <div class="logo">
         <a href="{{ .Site.BaseURL }}">
           {{ if .Site.Params.logoImage }}
-            <img src="{{ .Site.Params.logoImage | relURL }}" alt="{{ .Site.Title }}" class="logo-image">
+            <img src="{{ .Site.Params.logoImage | relURL }}" alt="{{ .Site.Title }}" class="logo-image logo-light">
           {{ end }}
+    
+          {{ if .Site.Params.logoImageDark }}
+            <img src="{{ .Site.Params.logoImageDark | relURL }}" alt="{{ .Site.Title }}" class="logo-image logo-dark">
+          {{ end }}
+
           <span class="logo-text">{{ .Site.Title }}</span>
         </a>
       </div>
