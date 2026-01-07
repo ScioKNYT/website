@@ -311,7 +311,7 @@ body {
   }
   
   #theme-toggle {
-    position: relative;
+    position: fixed;
     top: 45px;
     right: 20px;
   }
