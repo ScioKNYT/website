@@ -35,9 +35,23 @@ body.sepia {
     --text-color: #433422;
     --link-color: #8b6c42;
     --link-hover: #2b2216;
+    /*--color-border: #1e293b;  Find a better border colour for sepia then change this*/
 }
 /* Fix prose links for Sepia */
 body.sepia .prose a { color: #a67c52; }
+
+/* --- NEW THEME: OCEAN --- */
+body.ocean {
+    /* 1. The Main Background */
+    --bg-color: #0f172a;    
+    --text-color: #e2e8f0;
+    --link-color: #38bdf8;
+    --link-hover: #7dd3fc; 
+    --color-border: #1e293b;
+}
+body.ocean .prose a { 
+    color: #38bdf8; 
+}
 
 /* --- NEW THEME: TERMINAL (Matrix style) --- */
 body.terminal {
