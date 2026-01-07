@@ -291,3 +291,23 @@ body {
         right: calc((100vw - (var(--content-width) + var(--sidebar-width) + var(--gap) * 2)) / 2);
     }
 }
+/* 1. Default State (Light & Sepia themes use Black Logo) */
+.logo-image.logo-light {
+    display: block;
+}
+.logo-image.logo-dark {
+    display: none;
+}
+
+/* 2. Dark State (Dark, Ocean, & Terminal themes use White Logo) */
+body.dark .logo-image.logo-light,
+body.ocean .logo-image.logo-light,
+body.terminal .logo-image.logo-light {
+    display: none;
+}
+
+body.dark .logo-image.logo-dark,
+body.ocean .logo-image.logo-dark,
+body.terminal .logo-image.logo-dark {
+    display: block;
+}
