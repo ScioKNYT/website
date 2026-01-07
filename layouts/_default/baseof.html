@@ -98,7 +98,7 @@
       <nav class="nav">
         <ul class="menu">
           {{ range .Site.Menus.main }}
-          <li class="{{ if $.IsMenuCurrent "main" . }}active{{ end }}">
+          <li class="{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}active{{ end }}">
             <a href="{{ .URL | relURL }}">{{ .Name }}</a>
           </li>
           {{ end }}
@@ -114,63 +114,6 @@
       </footer>
     </main>
 
-  </div>
-  
-  <script>
-    // 1. Define the available themes
-    // 'default' refers to having no class (your :root variables)
-    const themes = ['default', 'dark', 'sepia', 'terminal', 'ocean'];
-
-    const toggleButton = document.getElementById('theme-toggle');
-
-    // 2. Helper to get the next theme index
-    function getNextTheme(current) {
-        const currentIndex = themes.indexOf(current);
-        return themes[(currentIndex + 1) % themes.length];
-    }
-
-    // 3. Helper to apply a specific theme
-    function setTheme(themeName) {
-        // Remove all theme classes first
-        document.body.classList.remove(...themes);
-        
-        // If it's not default, add the class
-        if (themeName !== 'default') {
-            document.body.classList.add(themeName);
-        }
-        
-        // Save to storage
-        localStorage.setItem('theme', themeName);
-    }
-
-    // 4. Initialize: Check storage or OS preference
-    let savedTheme = localStorage.getItem('theme');
-    
-    if (!savedTheme) {
-        // If no save, check system preference for dark mode
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            savedTheme = 'dark';
-        } else {
-            savedTheme = 'default';
-        }
-    }
-    
-    // Apply the initial theme
-    setTheme(savedTheme);
-
-    // 5. Handle Click
-    toggleButton.addEventListener('click', () => {
-        // Determine current theme based on body class
-        let currentTheme = 'default';
-        themes.forEach(t => {
-            if (document.body.classList.contains(t)) {
-                currentTheme = t;
-            }
-        });
-
-        const nextTheme = getNextTheme(currentTheme);
-        setTheme(nextTheme);
-    });
-  </script>
+  </div>  
 </body>
 </html>
