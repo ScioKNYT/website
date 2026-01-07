@@ -1,7 +1,7 @@
 baseURL = 'https://website-29s.pages.dev'
 languageCode = 'en-us'
 title = 'Huzef UR Rahman'
-theme = "PaperMod"
+
 
 [params]
     defaultTheme = "auto" 
@@ -13,21 +13,12 @@ theme = "PaperMod"
     ShowBreadCrumbs = false
     hideFooter = false
     showFullTextinRoot = false
+    description = "Materials and Design Engineer."
+    logoImage = "/images/logo.png"
     # This specifically removes the "Powered by" lines in PaperMod
     disableFingerprinting = true
 
-    [params.profileMode]
-        enabled = true
-        title = "Huzef UR Rahman"
-        subtitle = "Materials and Design Engineer. (Add more of your bio here)"
-        imageUrl = "/logo.png" # Uncomment when you have an image
-
-    [params.label]
-    text = "" # Leave this empty so only the image shows
-    icon = "/logo.png"
-    iconHeight = 35 # Adjust this to fit your sidebar nicely
-    
-[[menu.main]]
+  [[menu.main]]
     name = "About"
     url = "/"
     weight = 10
