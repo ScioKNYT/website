@@ -113,7 +113,7 @@ body {
 }
 
 .logo {
-  margin-top: calc(var(--identity-height) + var(--content-start));
+  margin-bottom: var(--identity-height);
 }
 
 .logo a {
@@ -275,7 +275,7 @@ body {
     flex-direction: row;    
   }
   .header nav {
-    margin-top: calc(var(--identity-height) + var(--content-start));
+    margin-top: var(--content-start);
   }
   .header {
     align-items: flex-start;
