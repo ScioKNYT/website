@@ -213,11 +213,12 @@ body {
   color: var(--text-color);
 }
 
-/* Theme toggle button */
+/* --- THEME TOGGLE FIXED --- */
 #theme-toggle {
+  /* Changed from fixed to absolute to prevent scrolling */
   position: absolute;
-  top: calc(var(--top-spacer) + 5px);
-  right: max(20px, calc((100vw - var(--content-width) - var(--sidebar-width) - var(--gap) * 2) / 2));
+  top: 120px; /* Matches --top-spacer */
+  right: 20px; /* Simple right alignment */
   background: none;
   border: none;
   cursor: pointer;
@@ -263,11 +264,17 @@ body {
     width: var(--content-width);
   }
   
+  /* --- FOOTER FIXED (DESKTOP) --- */
   .footer {
     margin-top: 0;
-    position: absolute;
-    bottom: 30px;
-    left: calc(50% + (var(--sidebar-width) + var(--gap)) / 2 - var(--content-width) / 2);
+    
+    /* Changed to absolute so it sits at the bottom of the layout, not the screen */
+    position: absolute; 
+    bottom: 20px;
+    
+    /* This calculation aligns it precisely with the start of your content text */
+    left: calc(var(--sidebar-width) + var(--gap));
+    
     width: var(--content-width);
     text-align: center;
   }
@@ -288,7 +295,7 @@ body {
   }
   
   #theme-toggle {
-    position: absolute;
+    position: fixed;
     top: 45px;
     right: 20px;
   }
