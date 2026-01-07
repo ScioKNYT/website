@@ -45,6 +45,7 @@ body.ocean {
     /* 1. The Main Background */
     --bg-color: #0f172a;    
     --text-color: #e2e8f0;
+    --color-text: #e2e8f0;
     --link-color: #38bdf8;
     --link-hover: #7dd3fc; 
     --color-border: #1e293b;
@@ -57,6 +58,7 @@ body.ocean .prose a {
 body.terminal {
     --bg-color: #0c0c0c;
     --text-color: #00ff00;
+    --color-text: #00ff00;
     --link-color: #008f11;
     --link-hover: #ccffcc;
     --color-border: #003300;
