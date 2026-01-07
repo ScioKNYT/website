@@ -5,11 +5,7 @@
   /* --- DIMENSIONS --- */
   --content-width: 650px;
   --sidebar-width: 200px;
-  
-  /* Matches the Theme Toggle spacing (20px) */
   --gap: 20px; 
-  
-  /* Reduced top space for tight "No Scroll" fit */
   --top-spacer: 200px; 
   
   /* --- COLORS --- */
@@ -72,20 +68,23 @@ body.terminal {
 }
 
 html {
-  /* FIX: Changed from 'scroll' to 'auto' to remove the forced scrollbar */
-  overflow-y: auto;
-  height: 100%;
+  /* FIX 1: Apply background here so it covers the WHOLE screen */
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
+  
+  /* FIX 2: Kill the forced scrollbar */
+  overflow-y: auto; 
+  height: 100%;
 }
 
 body {
   margin: 0;
-  height: 100%;
-  background-color: var(--bg-color);
+  min-height: 100%;
+  /* Transparent bg allows html color to show through */
+  background-color: transparent; 
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
@@ -95,12 +94,12 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  
-  /* Calculates exact width: Sidebar(200) + Gap(20) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  padding-top: var(--top-spacer);
-  padding-bottom: 0;
+  /* FIX 3: min-height ensures it fills the screen even if content is short */
+  min-height: 100vh;
+  
+  padding: var(--top-spacer) 0 40px; 
   width: 100%;
   position: relative;
 }
@@ -189,8 +188,6 @@ body {
   font-size: 17px;
   line-height: 1.625;
   color: var(--text-color);
-  
-  /* FIX: Justifies text and auto-hyphenates to look clean */
   text-align: justify;
   hyphens: auto;
 }
@@ -248,13 +245,10 @@ body {
   .header {
     align-items: flex-start;
     margin-bottom: 0;
-    
     padding-right: 0; 
     margin-right: var(--gap);
-    
     position: sticky;
     top: var(--top-spacer);
-    
     width: var(--sidebar-width);
     min-width: var(--sidebar-width);
     height: calc(100vh - var(--top-spacer));
@@ -277,11 +271,12 @@ body {
   .footer {
     margin-top: 0;
     position: absolute; 
+    
+    /* FIX 4: Footer sits at the bottom of the layout, which is min-100vh */
     bottom: 20px;
     
     left: calc(var(--sidebar-width) + var(--gap));
     width: var(--content-width);
-    
     text-align: left;
   }
 }
@@ -333,7 +328,6 @@ body {
   }
 }
 
-/* Cleanup */
 .social-icons {
   display: none !important;
 }
