@@ -318,13 +318,6 @@ body {
     margin-bottom: 20px;
   }
   
-  #theme-toggle {
-    position: fixed;
-    top: 16px;
-    right: 20px;
-    z-index: 2000;
-  }
-  
   .menu {
     flex-direction: row;
     flex-wrap: wrap;
