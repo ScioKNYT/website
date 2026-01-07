@@ -1,72 +1,69 @@
 :root {
-  /* --- Fonts & Sizes --- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
-  
   --content-width: 650px;
   --sidebar-width: 200px;
   --gap: 60px;
   --top-spacer: 120px;
-
-  /* --- Default Theme (Light) --- */
-  /* We unified text/bg variables to single names to prevent confusion */
-  --bg-body: #ffffff;
-  --text-main: #111827; 
-  --text-secondary: #333333; /* Slightly lighter for menu items */
-  
+  --color-text: #111827;
+  --color-background: #ffffff;
+  --color-border: #e5e7eb;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --bg-color: #ffffff;
+  --text-color: #333333;
   --link-color: #666666;
   --link-hover: #000000;
-  --color-border: #e5e7eb;
-  
-  --accent-color: #16a34a; /* Green for links */
 }
 
-/* --- THEMES --- */
-
-/* Dark Theme */
-body.dark {
-  --bg-body: #1d1d1f;
-  --text-main: #eaeaea;
-  --text-secondary: #d1d5db;
-  --link-color: #a0a0a0;
-  --link-hover: #ffffff;
+.dark {
+  --color-text: #f3f4f6;
+  --color-background: #030712;
   --color-border: #374151;
-  --accent-color: #4ade80; /* Lighter green for dark mode */
+}
+body.dark {
+    --bg-color: #1d1d1f;
+    --text-color: #eaeaea;
+    --link-color: #a0a0a0;
+    --link-hover: #ffffff;
 }
 
-/* Sepia Theme */
+/* --- THEME: SEPIA --- */
 body.sepia {
-  --bg-body: #f4ecd8;
-  --text-main: #433422;
-  --text-secondary: #5c4b35;
-  --link-color: #8b6c42;
-  --link-hover: #2b2216;
-  --accent-color: #a67c52;
+    --bg-color: #f4ecd8;
+    --text-color: #433422;
+    /* Added missing variable so logo text has color */
+    --color-text: #433422; 
+    --link-color: #8b6c42;
+    --link-hover: #2b2216;
 }
+body.sepia .prose a { color: #a67c52; }
 
-/* Ocean Theme */
+/* --- THEME: OCEAN --- */
 body.ocean {
-  --bg-body: #0f172a;    
-  --text-main: #e2e8f0;
-  --text-secondary: #cbd5e1;
-  --link-color: #38bdf8;
-  --link-hover: #7dd3fc; 
-  --color-border: #1e293b;
-  --accent-color: #38bdf8;
+    --bg-color: #0f172a;    
+    --text-color: #e2e8f0;
+    /* Added missing variable */
+    --color-text: #e2e8f0;
+    --link-color: #38bdf8;
+    --link-hover: #7dd3fc; 
+    --color-border: #1e293b;
 }
+body.ocean .prose a { color: #38bdf8; }
 
-/* Terminal Theme */
+/* --- THEME: TERMINAL --- */
 body.terminal {
-  --bg-body: #0c0c0c;
-  --text-main: #00ff00;
-  --text-secondary: #00cc00;
-  --link-color: #008f11;
-  --link-hover: #ccffcc;
-  --color-border: #003300;
-  --accent-color: #00cc00;
+    --bg-color: #0c0c0c;
+    --text-color: #00ff00;
+    /* Added missing variable */
+    --color-text: #00ff00;
+    --link-color: #008f11;
+    --link-hover: #ccffcc;
+    --color-border: #003300;
 }
-
-/* --- GLOBAL STYLES --- */
+body.terminal .prose a { color: #00cc00; }
 
 * {
   box-sizing: border-box;
@@ -74,8 +71,8 @@ body.terminal {
 
 html {
   overflow-y: scroll;
-  background-color: var(--bg-body);
-  color: var(--text-main);
+  background-color: var(--color-background);
+  color: var(--color-text);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
@@ -84,31 +81,74 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg-body);
-  color: var(--text-main);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* --- LAYOUT --- */
-
+/* --- LAYOUT FIXES START HERE --- */
 .layout {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap) * 2);
-  padding: var(--top-spacer) 0 60px; /* Reduced bottom padding */
+  /* Added padding-bottom to ensure footer doesn't cover content */
+  padding: var(--top-spacer) 0 100px;
   width: 100%;
-  min-height: 100vh; /* Ensures footer can push to bottom */
+  
+  /* IMPORTANT: This keeps absolute elements contained inside the layout */
   position: relative; 
+  min-height: 100vh;
 }
 
-/* --- HEADER & NAV --- */
+/* --- THEME TOGGLE FIXED --- */
+#theme-toggle {
+    /* Changed to absolute so it stays at top */
+    position: absolute;
+    top: 120px; 
+    right: 20px; 
+    
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 0;
+    z-index: 1000;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#theme-toggle:hover {
+    opacity: 1;
+}
+
+.nav a { color: var(--link-color); }
+.nav a:hover { color: var(--link-hover); }
+
+@media (min-width: 900px) {
+  .layout {
+    flex-direction: row;
+    /* Reduced bottom padding slightly for desktop */
+    padding: var(--top-spacer) 0 100px;
+  }
+}
 
 .header {
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
   width: 100%;
+}
+
+@media (min-width: 900px) {
+  .header {
+    align-items: flex-start;
+    margin-bottom: 0;
+    padding-right: var(--gap);
+    position: sticky;
+    top: var(--top-spacer);
+    width: var(--sidebar-width);
+  }
 }
 
 .logo {
@@ -119,7 +159,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--text-main); /* Fixed: uses unified variable */
+  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -149,7 +189,7 @@ body {
 }
 
 .menu a {
-  color: var(--text-secondary); /* Fixed: uses unified variable */
+  color: var(--text-color);
   display: block;
   font-weight: 500;
   text-decoration: none;
@@ -160,13 +200,21 @@ body {
   opacity: 0.7;
 }
 
-.nav a { color: var(--link-color); }
-.nav a:hover { color: var(--link-hover); }
-
-/* --- CONTENT --- */
-
 .content {
   width: 100%;
+}
+
+@media (min-width: 900px) {
+  .logo-image {
+    display: block; 
+  }
+  .logo-text {
+    display: none; 
+  }
+  .content {
+    max-width: var(--content-width);
+    width: var(--content-width);
+  }
 }
 
 .title {
@@ -187,84 +235,39 @@ body {
 }
 
 .prose a {
-  color: var(--accent-color);
+  color: var(--color-green-600);
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-/* --- FOOTER --- */
+.dark .prose a {
+  color: var(--color-green-400);
+}
 
 .footer {
-  margin-top: auto; /* This pushes footer to bottom of flex container */
-  padding-top: 40px;
+  margin-top: 40px;
   opacity: 0.5;
   font-size: 12px;
-  width: 100%;
 }
 
-/* --- THEME TOGGLE --- */
-
-#theme-toggle {
-    position: absolute;
-    top: 120px; 
-    right: 20px; 
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-main);
-    padding: 0;
-    z-index: 1000;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-}
-
-#theme-toggle:hover {
-    opacity: 1;
-}
-
-/* --- RESPONSIVE DESIGN (DESKTOP) --- */
-/* Merged all 900px queries into one block */
+/* --- FOOTER FIXED (DESKTOP) --- */
 @media (min-width: 900px) {
-  .layout {
-    flex-direction: row;
-    padding: var(--top-spacer) 0 40px;
-  }
-
-  .header {
-    align-items: flex-start;
-    margin-bottom: 0;
-    padding-right: var(--gap);
-    position: sticky;
-    top: var(--top-spacer);
-    width: var(--sidebar-width);
-    /* Sidebar height needs to fit within viewport for sticky to work nicely */
-    max-height: calc(100vh - var(--top-spacer)); 
-    overflow-y: auto;
-  }
-
-  .content {
-    max-width: var(--content-width);
-    width: var(--content-width);
-  }
-
-  .logo-image {
-    display: block; 
-  }
-  
-  .logo-text {
-    display: none; 
-  }
-
-  /* Footer Logic for Desktop */
   .footer {
+    margin-top: 0;
+    
+    /* Changed from fixed to absolute so it sits at the bottom of content */
+    position: absolute;
+    bottom: 20px; 
+    
+    /* Using your original centering logic */
+    left: calc(50% + (var(--sidebar-width) + var(--gap) / 2));
+    transform: translateX(-50%);
     width: var(--content-width);
-    /* Reset margins for side-by-side layout */
-    margin-left: calc(var(--sidebar-width) + var(--gap)); 
   }
 }
 
-/* --- RESPONSIVE DESIGN (MOBILE) --- */
+/* Mobile adjustments */
 @media (max-width: 899px) {
   .layout {
     padding: 40px 20px 60px;
@@ -284,27 +287,27 @@ body {
     gap: 20px;
   }
   
+  .menu li {
+    margin: 0;
+  }
+  
   .title {
     font-size: 28px;
     margin-bottom: 24px;
   }
 }
 
-/* Theme Toggle Position Fix for Wide Screens */
+/* Theme Toggle Calculation */
 @media (min-width: 1000px) {
     #theme-toggle {
         right: calc((100vw - (var(--content-width) + var(--sidebar-width) + var(--gap) * 2)) / 2);
     }
 }
 
-/* --- LOGO TOGGLING LOGIC --- */
-
-/* 1. Default State (Light & Sepia) */
+/* Logo Switching Logic */
 .logo-image.logo-light { display: block; }
 .logo-image.logo-dark { display: none; }
 
-/* 2. Dark State (Dark, Ocean, Terminal) */
-/* Grouped selectors for cleaner code */
 body.dark .logo-image.logo-light,
 body.ocean .logo-image.logo-light,
 body.terminal .logo-image.logo-light {
