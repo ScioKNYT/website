@@ -252,7 +252,7 @@ body {
 
 /* --- THEME TOGGLE --- */
 #theme-toggle {
-  position: fixed;
+  position: absolute;
   top: 16px;
   right: 20px;
   background: none;
@@ -284,13 +284,7 @@ body {
     min-height: calc(100vh - var(--top-spacer));
     justify-content: flex-start;
   }
-  #theme-toggle {
-    right: calc(
-      50% -
-      ( (var(--content-width) + var(--sidebar-width) + var(--gap)) / 2 )
-      + 28px
-    );
-  }
+  
   .logo-image {
     display: block;
   }
@@ -319,8 +313,9 @@ body {
     position: fixed;
     top: 16px;
     right: 20px;
-    z-index: 2000;
+    }
   }
+
   .header {
     margin-bottom: 20px;
   }
