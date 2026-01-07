@@ -1,8 +1,9 @@
 {{ define "main" }}
 <section>
-  <h1>{{ .Title }}</h1>
+  <h1 class="title">{{ .Title }}</h1>
   <div class="prose">{{ .Content }}</div>
 
+  {{ if not .IsHome }}
   <ul class="post-list">
     {{ range .Pages }}
     <li>
@@ -13,5 +14,7 @@
     </li>
     {{ end }}
   </ul>
+  {{ end }}
+  
 </section>
 {{ end }}
