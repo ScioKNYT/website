@@ -2,11 +2,15 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
   
-  /* --- DIMENSIONS --- */
+  /* --- DIMENSIONS ADJUSTED --- */
   --content-width: 650px;
   --sidebar-width: 200px;
-  --gap: 60px;
-  --top-spacer: 120px;
+  
+  /* FIX 1: Reduced gap to 20px to match the Theme Toggle spacing (Symmetry) */
+  --gap: 20px; 
+  
+  /* FIX 2: Reduced top space so homepage fits without scrolling */
+  --top-spacer: 100px; 
   
   /* --- COLORS (Light Theme Default) --- */
   --text-color: #111827;
@@ -22,51 +26,42 @@
 }
 
 /* --- THEMES --- */
-
-/* Dark */
 body.dark {
   --text-color: #f3f4f6;
   --bg-color: #030712;
   --border-color: #374151;
   --link-color: #34d399; 
   --link-hover-color: #4ade80; 
-  
   --logo-light-display: none;
   --logo-dark-display: block;
 }
 
-/* Sepia */
 body.sepia {
   --text-color: #433422;
   --bg-color: #f4ecd8;
   --border-color: #d6c8a5;
   --link-color: #8b6c42;
   --link-hover-color: #6b5332;
-  
   --logo-light-display: block;
   --logo-dark-display: none;
 }
 
-/* Ocean */
 body.ocean {
   --text-color: #e2e8f0;
   --bg-color: #0f172a;
   --border-color: #1e293b;
   --link-color: #38bdf8;
   --link-hover-color: #7dd3fc;
-  
   --logo-light-display: none;
   --logo-dark-display: block;
 }
 
-/* Terminal */
 body.terminal {
   --text-color: #00ff00;
   --bg-color: #0c0c0c;
   --border-color: #003300;
   --link-color: #00cc00;
   --link-hover-color: #00ff00;
-  
   --logo-light-display: none;
   --logo-dark-display: block;
 }
@@ -99,11 +94,11 @@ body {
   flex-direction: column;
   margin: 0 auto;
   
-  /* SQUARED LOOK FIX: Exact calculation (Sidebar + Gap + Content) */
-  /* This removes floating whitespace and centers the block strictly */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  padding: var(--top-spacer) 0 100px;
+  /* FIX 3: Reduced bottom padding to prevent unnecessary scrolling */
+  padding: var(--top-spacer) 0 40px; 
+  
   width: 100%;
   position: relative;
 }
@@ -192,6 +187,9 @@ body {
   font-size: 17px;
   line-height: 1.625;
   color: var(--text-color);
+  
+  /* FIX 4: Justified text as requested */
+  text-align: justify;
 }
 
 .prose p {
@@ -221,7 +219,7 @@ body {
 /* --- THEME TOGGLE --- */
 #theme-toggle {
   position: absolute;
-  top: 120px; 
+  top: 100px; /* Matches the new --top-spacer */
   right: 20px; 
   background: none;
   border: none;
@@ -241,22 +239,19 @@ body {
 @media (min-width: 900px) {
   .layout {
     flex-direction: row;
-    padding: var(--top-spacer) 0 100px;
+    padding: var(--top-spacer) 0 40px; /* Reduced bottom padding */
   }
   
   .header {
     align-items: flex-start;
     margin-bottom: 0;
     
-    /* SQUARED LOOK FIX: Use margin instead of padding for the gap */
-    /* This creates a cleaner separation between columns */
     padding-right: 0; 
     margin-right: var(--gap);
     
     position: sticky;
     top: var(--top-spacer);
     
-    /* Rigid width prevents squishing */
     width: var(--sidebar-width);
     min-width: var(--sidebar-width);
     height: calc(100vh - var(--top-spacer));
@@ -286,7 +281,6 @@ body {
     left: calc(var(--sidebar-width) + var(--gap));
     width: var(--content-width);
     
-    /* SQUARED LOOK FIX: Align text to left (grid snap) instead of center */
     text-align: left;
   }
 }
@@ -295,7 +289,6 @@ body {
 @media (max-width: 899px) {
   .layout {
     padding: 40px 20px 60px;
-    /* On mobile, we let the width be fluid */
     max-width: 100%;
   }
   
