@@ -126,16 +126,16 @@ body {
 
 .logo-image.logo-light {
   display: var(--logo-light-display);
-  width: 40px;
-  height: 40px;
+  width: var(--identity-height);
+  height: var(--identity-height);
   border-radius: 0;
   object-fit: contain;
 }
 
 .logo-image.logo-dark {
   display: var(--logo-dark-display);
-  width: 40px;
-  height: 40px;
+  width: var(--identity-height);
+  height: var(--identity-height);
   border-radius: 0;
   object-fit: contain;
 }
@@ -275,7 +275,7 @@ body {
     flex-direction: row;    
   }
   .header nav {
-    margin-top: var(--content-start);
+    margin-top: calc(var(--identity-height) + var(--content-start));
   }
   .header {
     align-items: flex-start;
