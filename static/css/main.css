@@ -1,70 +1,72 @@
 :root {
+  /* --- Fonts & Sizes --- */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
+  
   --content-width: 650px;
   --sidebar-width: 200px;
   --gap: 60px;
   --top-spacer: 120px;
-  --color-text: #111827;
-  --color-background: #ffffff;
-  --color-border: #e5e7eb;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-green-500: #22c55e;
-  --color-green-600: #16a34a;
-  --bg-color: #ffffff;
-  --text-color: #333333;
+
+  /* --- Default Theme (Light) --- */
+  /* We unified text/bg variables to single names to prevent confusion */
+  --bg-body: #ffffff;
+  --text-main: #111827; 
+  --text-secondary: #333333; /* Slightly lighter for menu items */
+  
   --link-color: #666666;
   --link-hover: #000000;
+  --color-border: #e5e7eb;
+  
+  --accent-color: #16a34a; /* Green for links */
 }
 
-.dark {
-  --color-text: #f3f4f6;
-  --color-background: #030712;
-  --color-border: #374151;
-}
+/* --- THEMES --- */
+
+/* Dark Theme */
 body.dark {
-    --bg-color: #1d1d1f;
-    --text-color: #eaeaea;
-    --link-color: #a0a0a0;
-    --link-hover: #ffffff;
+  --bg-body: #1d1d1f;
+  --text-main: #eaeaea;
+  --text-secondary: #d1d5db;
+  --link-color: #a0a0a0;
+  --link-hover: #ffffff;
+  --color-border: #374151;
+  --accent-color: #4ade80; /* Lighter green for dark mode */
 }
-/* --- NEW THEME: SEPIA (Warm/Book style) --- */
+
+/* Sepia Theme */
 body.sepia {
-    --bg-color: #f4ecd8;
-    --text-color: #433422;
-    --link-color: #8b6c42;
-    --link-hover: #2b2216;
-    /*--color-border: #1e293b;  Find a better border colour for sepia then change this*/
+  --bg-body: #f4ecd8;
+  --text-main: #433422;
+  --text-secondary: #5c4b35;
+  --link-color: #8b6c42;
+  --link-hover: #2b2216;
+  --accent-color: #a67c52;
 }
-/* Fix prose links for Sepia */
-body.sepia .prose a { color: #a67c52; }
 
-/* --- NEW THEME: OCEAN --- */
+/* Ocean Theme */
 body.ocean {
-    /* 1. The Main Background */
-    --bg-color: #0f172a;    
-    --text-color: #e2e8f0;
-    --color-text: #e2e8f0;
-    --link-color: #38bdf8;
-    --link-hover: #7dd3fc; 
-    --color-border: #1e293b;
-}
-body.ocean .prose a { 
-    color: #38bdf8; 
+  --bg-body: #0f172a;    
+  --text-main: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --link-color: #38bdf8;
+  --link-hover: #7dd3fc; 
+  --color-border: #1e293b;
+  --accent-color: #38bdf8;
 }
 
-/* --- NEW THEME: TERMINAL (Matrix style) --- */
+/* Terminal Theme */
 body.terminal {
-    --bg-color: #0c0c0c;
-    --text-color: #00ff00;
-    --color-text: #00ff00;
-    --link-color: #008f11;
-    --link-hover: #ccffcc;
-    --color-border: #003300;
+  --bg-body: #0c0c0c;
+  --text-main: #00ff00;
+  --text-secondary: #00cc00;
+  --link-color: #008f11;
+  --link-hover: #ccffcc;
+  --color-border: #003300;
+  --accent-color: #00cc00;
 }
-/* Fix prose links for Terminal */
-body.terminal .prose a { color: #00cc00; }
+
+/* --- GLOBAL STYLES --- */
 
 * {
   box-sizing: border-box;
@@ -72,8 +74,8 @@ body.terminal .prose a { color: #00cc00; }
 
 html {
   overflow-y: scroll;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: var(--bg-body);
+  color: var(--text-main);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
@@ -82,69 +84,31 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg-body);
+  color: var(--text-main);
   transition: background-color 0.3s, color 0.3s;
 }
+
+/* --- LAYOUT --- */
 
 .layout {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap) * 2);
-  padding: var(--top-spacer) 0 100px;
+  padding: var(--top-spacer) 0 60px; /* Reduced bottom padding */
   width: 100%;
-  position: relative;
-}
-/* --- THEME TOGGLE POSITIONING --- */
-#theme-toggle {
-    position: absolute;
-    /* This matches the logo's top position exactly */
-    top: 120px; 
-    /* This aligns it to the far right, matching the 'line length' feel */
-    right: 20px; 
-    
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-color); /* Icon takes the text color */
-    padding: 0;
-    z-index: 1000;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+  min-height: 100vh; /* Ensures footer can push to bottom */
+  position: relative; 
 }
 
-#theme-toggle:hover {
-    opacity: 1;
-}
-
-/* --- Ensure Links use the variables --- */
-.nav a { color: var(--link-color); }
-.nav a:hover { color: var(--link-hover); }
-
-@media (min-width: 900px) {
-  .layout {
-    flex-direction: row;
-    padding: var(--top-spacer) 0 100px;
-  }
-}
+/* --- HEADER & NAV --- */
 
 .header {
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
   width: 100%;
-}
-
-@media (min-width: 900px) {
-  .header {
-    align-items: flex-start;
-    margin-bottom: 0;
-    padding-right: var(--gap);
-    position: sticky;
-    top: var(--top-spacer);
-    width: var(--sidebar-width);
-  }
 }
 
 .logo {
@@ -155,7 +119,7 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: var(--color-text);
+  color: var(--text-main); /* Fixed: uses unified variable */
   text-decoration: none;
 }
 
@@ -164,7 +128,7 @@ body {
   height: 40px;
   border-radius: 0;
   object-fit: contain;
-  display: none; /* Hidden by default on mobile */
+  display: none; 
 }
 
 .logo-text {
@@ -185,7 +149,7 @@ body {
 }
 
 .menu a {
-  color: var(--text-color);
+  color: var(--text-secondary); /* Fixed: uses unified variable */
   display: block;
   font-weight: 500;
   text-decoration: none;
@@ -196,21 +160,13 @@ body {
   opacity: 0.7;
 }
 
+.nav a { color: var(--link-color); }
+.nav a:hover { color: var(--link-hover); }
+
+/* --- CONTENT --- */
+
 .content {
   width: 100%;
-}
-
-@media (min-width: 900px) {
-  .logo-image {
-    display: block; /* Show image on desktop */
-  }
-  .logo-text {
-    display: none; /* Hide text on desktop */
-  }
-  .content {
-    max-width: var(--content-width);
-    width: var(--content-width);
-  }
 }
 
 .title {
@@ -231,34 +187,84 @@ body {
 }
 
 .prose a {
-  color: var(--color-green-600);
+  color: var(--accent-color);
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.dark .prose a {
-  color: var(--color-green-400);
-}
+/* --- FOOTER --- */
 
 .footer {
-  margin-top: 40px;
+  margin-top: auto; /* This pushes footer to bottom of flex container */
+  padding-top: 40px;
   opacity: 0.5;
   font-size: 12px;
+  width: 100%;
 }
 
-@media (min-width: 900px) {
-  .footer {
-    margin-top: 0;
+/* --- THEME TOGGLE --- */
+
+#theme-toggle {
     position: absolute;
-    bottom: 20px;
-    left: calc(50% + (var(--sidebar-width) + var(--gap) / 2));
-    transform: translateX(-50%);
+    top: 120px; 
+    right: 20px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    padding: 0;
+    z-index: 1000;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#theme-toggle:hover {
+    opacity: 1;
+}
+
+/* --- RESPONSIVE DESIGN (DESKTOP) --- */
+/* Merged all 900px queries into one block */
+@media (min-width: 900px) {
+  .layout {
+    flex-direction: row;
+    padding: var(--top-spacer) 0 40px;
+  }
+
+  .header {
+    align-items: flex-start;
+    margin-bottom: 0;
+    padding-right: var(--gap);
+    position: sticky;
+    top: var(--top-spacer);
+    width: var(--sidebar-width);
+    /* Sidebar height needs to fit within viewport for sticky to work nicely */
+    max-height: calc(100vh - var(--top-spacer)); 
+    overflow-y: auto;
+  }
+
+  .content {
+    max-width: var(--content-width);
     width: var(--content-width);
+  }
+
+  .logo-image {
+    display: block; 
+  }
+  
+  .logo-text {
+    display: none; 
+  }
+
+  /* Footer Logic for Desktop */
+  .footer {
+    width: var(--content-width);
+    /* Reset margins for side-by-side layout */
+    margin-left: calc(var(--sidebar-width) + var(--gap)); 
   }
 }
 
-/* Mobile adjustments */
+/* --- RESPONSIVE DESIGN (MOBILE) --- */
 @media (max-width: 899px) {
   .layout {
     padding: 40px 20px 60px;
@@ -278,31 +284,27 @@ body {
     gap: 20px;
   }
   
-  .menu li {
-    margin: 0;
-  }
-  
   .title {
     font-size: 28px;
     margin-bottom: 24px;
   }
 }
-/* Add to bottom of main.css */
+
+/* Theme Toggle Position Fix for Wide Screens */
 @media (min-width: 1000px) {
     #theme-toggle {
-        /* Calculates margin to keep button aligned with content edge */
         right: calc((100vw - (var(--content-width) + var(--sidebar-width) + var(--gap) * 2)) / 2);
     }
 }
-/* 1. Default State (Light & Sepia themes use Black Logo) */
-.logo-image.logo-light {
-    display: block;
-}
-.logo-image.logo-dark {
-    display: none;
-}
 
-/* 2. Dark State (Dark, Ocean, & Terminal themes use White Logo) */
+/* --- LOGO TOGGLING LOGIC --- */
+
+/* 1. Default State (Light & Sepia) */
+.logo-image.logo-light { display: block; }
+.logo-image.logo-dark { display: none; }
+
+/* 2. Dark State (Dark, Ocean, Terminal) */
+/* Grouped selectors for cleaner code */
 body.dark .logo-image.logo-light,
 body.ocean .logo-image.logo-light,
 body.terminal .logo-image.logo-light {
