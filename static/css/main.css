@@ -284,7 +284,13 @@ body {
     min-height: calc(100vh - var(--top-spacer));
     justify-content: flex-start;
   }
-  
+  #theme-toggle {
+    right: calc(
+      50% -
+      ( (var(--content-width) + var(--sidebar-width) + var(--gap)) / 2 )
+      + 28px
+    );
+  }
   .logo-image {
     display: block;
   }
@@ -309,7 +315,12 @@ body {
     padding: 0 20px 60px;
     max-width: 100%;
   }
-  
+  #theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    z-index: 2000;
+  }
   .header {
     margin-bottom: 20px;
   }
