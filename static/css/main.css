@@ -250,7 +250,7 @@ body {
 @media (min-width: 900px) {
   .footer {
     margin-top: 0;
-    /*position: fixed;*/
+    position: absolute;
     bottom: 30px;
     left: calc(50% + (var(--sidebar-width) + var(--gap) / 2));
     transform: translateX(-50%);
