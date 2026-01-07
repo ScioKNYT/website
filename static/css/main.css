@@ -330,7 +330,3 @@ body {
 .social-icons {
   display: none !important;
 }
-
-.footer > span:last-child {
-  display: none !important;
-}
