@@ -251,6 +251,7 @@ body {
   .layout {
     flex-direction: row;
     padding: var(--top-spacer) 0 0;
+    padding-bottom: 120px;
   }
   
   .header {
@@ -278,6 +279,8 @@ body {
   .content {
     max-width: var(--content-width);
     width: var(--content-width);
+    display: flex;
+    flex-direction: column;
   }
   
   /* Theme toggle on desktop - positioned relative to content width */
@@ -286,12 +289,16 @@ body {
   }
   
   .footer {
-    margin-top: 0;
-    position: absolute;
-    bottom: 100px;
-    left: calc(50% + var(--sidebar-width) + var(--gap) - var(--content-width) / 2);
-    width: var(--content-width);
+    position: relative;
+    bottom: auto;
+    left: auto;
+    margin-top: 40px;
+    width: 100%;
+    max-width: var(--content-width);
     text-align: left;
+    opacity: var(--footer-opacity);
+    font-size: 12px;
+    align-self: flex-start;
   }
 }
 
@@ -311,9 +318,14 @@ body {
   }
   
   #theme-toggle {
-    position: relative;
-    top: 45px;
+    position: fixed;
+    top: 16px;
     right: 20px;
+    z-index: 2000;
+    background: none;
+    border: none;
+    padding: 0;
+    opacity: 0.9;
   }
   
   .menu {
