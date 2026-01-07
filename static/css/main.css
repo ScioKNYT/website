@@ -320,6 +320,7 @@ body {
   .layout {
     padding: 40px 20px 60px;
     max-width: 100%;
+    padding-top: 0;
   }
   
   .header {
