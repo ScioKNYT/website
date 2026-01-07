@@ -220,7 +220,7 @@ body {
 /* --- THEME TOGGLE --- */
 #theme-toggle {
   position: absolute;
-  top: 100px; 
+  top: var(--top-spacer); 
   right: 20px; 
   background: none;
   border: none;
