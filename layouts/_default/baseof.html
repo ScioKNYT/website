@@ -104,13 +104,14 @@
       </nav>
     </header>
     
-    <main class="main">
-    {{ block "main" . }}{{ end }}
-  </main>
-    
-    <footer class="footer">
-      <span>© {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</span>
-    </footer>
+    <main class="content">
+      {{ block "main" . }}{{ end }}
+
+      <footer class="footer">
+        <span>© {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</span>
+      </footer>
+    </main>
+
   </div>
   
   <script>
