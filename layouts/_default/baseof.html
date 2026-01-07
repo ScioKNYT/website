@@ -7,107 +7,102 @@
   <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
   {{ range .AlternativeOutputFormats -}}
-  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}
+
   <script src="https://unpkg.com/@hotwired/turbo@7.3.0/dist/turbo.es2017-umd.js"></script>
+
   <script>
-    // We listen for 'turbo:load'. This event fires on the initial load AND
-    // every time Turbo navigates to a new page.
     document.addEventListener("turbo:load", function() {
-        const themes = ['default', 'dark', 'sepia', 'terminal', 'ocean'];
-        const toggleButton = document.getElementById('theme-toggle');
+      const themes = ['default', 'dark', 'sepia', 'terminal', 'ocean'];
+      const toggleButton = document.getElementById('theme-toggle');
+      if (!toggleButton) return;
 
-        // If the button doesn't exist on this page, stop here.
-        if (!toggleButton) return;
-
-        // Helper to apply the theme
-        function setTheme(themeName) {
-            // Remove all possible theme classes
-            document.body.classList.remove(...themes);
-            
-            // Add the selected theme class (unless it's default)
-            if (themeName !== 'default') {
-                document.body.classList.add(themeName);
-            }
-            
-            // Save to LocalStorage
-            localStorage.setItem('theme', themeName);
+      function setTheme(themeName) {
+        document.body.classList.remove(...themes);
+        if (themeName !== 'default') {
+          document.body.classList.add(themeName);
         }
+        localStorage.setItem('theme', themeName);
+      }
 
-        // --- STEP 1: RESTORE THEME ---
-        // We must do this every time 'turbo:load' fires because Turbo
-        // replaces the <body> tag, wiping out our classes.
-        let savedTheme = localStorage.getItem('theme');
-        if (!savedTheme) {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                savedTheme = 'dark';
-            } else {
-                savedTheme = 'default';
-            }
-        }
-        setTheme(savedTheme);
+      let savedTheme = localStorage.getItem('theme');
+      if (!savedTheme) {
+        savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? 'dark'
+          : 'default';
+      }
+      setTheme(savedTheme);
 
-        // --- STEP 2: CLICK LISTENER ---
-        // Since Turbo replaces the button element, we attach a new listener.
-        toggleButton.addEventListener('click', () => {
-            // Find current theme from body class
-            let currentTheme = 'default';
-            themes.forEach(t => {
-                if (document.body.classList.contains(t)) {
-                    currentTheme = t;
-                }
-            });
-
-            // Calculate next theme
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextTheme = themes[(currentIndex + 1) % themes.length];
-            
-            // Apply it
-            setTheme(nextTheme);
+      toggleButton.addEventListener('click', () => {
+        let currentTheme = 'default';
+        themes.forEach(t => {
+          if (document.body.classList.contains(t)) currentTheme = t;
         });
+        const nextTheme = themes[(themes.indexOf(currentTheme) + 1) % themes.length];
+        setTheme(nextTheme);
+      });
     });
   </script>
 </head>
+
 <body class="antialiased">
+
+  <!-- ✅ THEME TOGGLE MOVED HERE -->
+  <button id="theme-toggle" aria-label="Cycle Theme">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="13.5" cy="6.5" r="2.5"></circle>
+      <circle cx="17.5" cy="10.5" r="2.5"></circle>
+      <circle cx="8.5" cy="7.5" r="2.5"></circle>
+      <circle cx="6.5" cy="12.5" r="2.5"></circle>
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10
+               c.926 0 1.648-.746 1.648-1.688
+               0-.437-.18-.835-.437-1.125
+               -.29-.289-.438-.652-.438-1.125
+               a1.64 1.64 0 0 1 1.668-1.668h1.996
+               c3.051 0 5.555-2.503 5.555-5.554
+               C21.965 6.012 17.461 2 12 2z"></path>
+    </svg>
+  </button>
+
   <div class="layout">
-    <button id="theme-toggle" aria-label="Cycle Theme">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="13.5" cy="6.5" r="2.5"></circle>
-            <circle cx="17.5" cy="10.5" r="2.5"></circle>
-            <circle cx="8.5" cy="7.5" r="2.5"></circle>
-            <circle cx="6.5" cy="12.5" r="2.5"></circle>
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
-        </svg>
-    </button>
-    
+
     <header class="header">
       <div class="logo">
         <a href="{{ .Site.BaseURL }}">
           {{ if .Site.Params.logoImage }}
-            <img src="{{ .Site.Params.logoImage | relURL }}" alt="{{ .Site.Title }}" class="logo-image logo-light">
+            <img src="{{ .Site.Params.logoImage | relURL }}"
+                 alt="{{ .Site.Title }}"
+                 class="logo-image logo-light">
           {{ end }}
-    
+
           {{ if .Site.Params.logoImageDark }}
-            <img src="{{ .Site.Params.logoImageDark | relURL }}" alt="{{ .Site.Title }}" class="logo-image logo-dark">
+            <img src="{{ .Site.Params.logoImageDark | relURL }}"
+                 alt="{{ .Site.Title }}"
+                 class="logo-image logo-dark">
           {{ end }}
 
           <span class="logo-text">{{ .Site.Title }}</span>
         </a>
       </div>
+
       <nav class="nav">
         <ul class="menu">
           {{ range .Site.Menus.main }}
-          {{ $current := $.RelPermalink }}
-          {{ $item := .URL | relURL }}
-          <li class="{{ if or (eq $current $item) (and (ne $item "/") (hasPrefix $current $item)) }}active{{ end }}">
-            <a href="{{ .URL | relURL }}">{{ .Name }}</a>
-          </li>
+            {{ $current := $.RelPermalink }}
+            {{ $item := .URL | relURL }}
+            <li class="{{ if or (eq $current $item) (and (ne $item "/") (hasPrefix $current $item)) }}active{{ end }}">
+              <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+            </li>
           {{ end }}
         </ul>
       </nav>
     </header>
-    
+
     <main class="content">
       {{ block "main" . }}{{ end }}
 
@@ -116,6 +111,6 @@
       </footer>
     </main>
 
-  </div>  
+  </div>
 </body>
 </html>
