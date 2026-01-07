@@ -1,5 +1,6 @@
 :root {
   --content-start: 80px;
+  --identity-height: 40px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
   
@@ -97,11 +98,9 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  
   /* Calculates exact width: Sidebar(200) + Gap(60) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
-  
-  padding: var(--top-spacer) 0 0; 
+  padding-top: var(--top-spacer);  
   width: 100%;
   position: relative;
 }
@@ -114,7 +113,7 @@ body {
 }
 
 .logo {
-  margin-bottom: 40px;
+  margin-bottom: var(--identity-height);
 }
 
 .logo a {
@@ -273,19 +272,17 @@ body {
 /* --- DESKTOP STRUCTURE --- */
 @media (min-width: 900px) {
   .layout {
-    flex-direction: row;
-    padding: var(--top-spacer) 0 0;
+    flex-direction: row;    
   }
   .header nav {
     margin-top: var(--content-start);
   }
   .header {
     align-items: flex-start;
-    margin-bottom: 0;
     padding-right: var(--gap);
     margin-right: 0;    
     position: sticky;
-    top: var(--top-spacer);    
+    top: 0;    
     width: var(--sidebar-width);
     min-height: calc(100vh - var(--top-spacer));
     justify-content: flex-start;
