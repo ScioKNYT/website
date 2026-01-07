@@ -35,16 +35,6 @@
     {{ block "main" . }}{{ end }}
   </main>
     
-    <main class="content">
-      {{ if .IsHome }}
-      <h1 class="title">{{ .Site.Title }}</h1>
-      {{ else }}
-      <h1 class="title">{{ .Title }}</h1>
-      {{ end }}
-      <div class="prose">
-        {{ .Content }}
-      </div>
-    </main>
     <footer class="footer">
       <span>© {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.</span>
     </footer>
