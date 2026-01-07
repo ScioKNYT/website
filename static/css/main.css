@@ -1,3 +1,28 @@
+/* --- 1. USER OVERRIDES (NO SCROLLBAR UI) --- */
+html {
+  overflow-y: auto !important; /* Allow scroll only when needed */
+  scrollbar-width: none !important; /* Firefox: hide scrollbar track */
+  
+  /* FIX: Apply background here so it covers the WHOLE screen */
+  background-color: var(--bg-color);
+  height: 100%;
+}
+
+html::-webkit-scrollbar {
+  display: none !important; /* Chrome/Safari: hide entire scrollbar */
+}
+
+body {
+  overflow-x: hidden !important; /* Prevent horizontal overflow */
+  width: 100vw !important; /* Ensure body takes full viewport width */
+  margin: 0 auto !important; /* Remove any default margin */
+  
+  /* FIX: Ensure body is at least as tall as screen */
+  min-height: 100vh;
+  background-color: transparent; /* Let html color show through */
+}
+
+/* --- 2. VARIABLES --- */
 :root {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
@@ -5,8 +30,12 @@
   /* --- DIMENSIONS --- */
   --content-width: 650px;
   --sidebar-width: 200px;
-  --gap: 60px;
-  --top-spacer: 120px;
+  
+  /* Matches the Theme Toggle spacing (20px) */
+  --gap: 20px; 
+  
+  /* Top space */
+  --top-spacer: 200px; 
   
   /* --- COLORS --- */
   --text-color: #111827;
@@ -21,7 +50,7 @@
   --logo-dark-display: none;
 }
 
-/* --- THEMES --- */
+/* --- 3. THEMES --- */
 body.dark {
   --text-color: #f3f4f6;
   --bg-color: #030712;
@@ -62,50 +91,41 @@ body.terminal {
   --logo-dark-display: block;
 }
 
-/* --- GLOBAL RESETS --- */
+/* --- 4. GLOBAL RESETS --- */
 * {
   box-sizing: border-box;
 }
 
 html {
-  /* Mitchell's approach: always show scrollbar for layout stability */
-  overflow-y: scroll;
-  background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
-  scrollbar-width: none; /* Firefox: hide scrollbar track */
-}
-
-html::-webkit-scrollbar {
-  display: none; /* Chrome/Safari: hide entire scrollbar */
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-/* --- MAIN LAYOUT --- */
+/* --- 5. MAIN LAYOUT --- */
 .layout {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   
-  /* Calculates exact width: Sidebar(200) + Gap(60) + Content(650) */
+  /* Calculates exact width: Sidebar(200) + Gap(20) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  padding: var(--top-spacer) 0 100px; 
+  /* Ensure min-height fills screen so footer pushes down */
+  min-height: 100vh;
+  
+  padding: var(--top-spacer) 0 40px; 
   width: 100%;
   position: relative;
 }
 
-/* --- HEADER / SIDEBAR --- */
+/* --- 6. HEADER / SIDEBAR --- */
 .header {
   display: flex;
   flex-direction: column;
@@ -171,7 +191,7 @@ body {
   opacity: 0.7;
 }
 
-/* --- CONTENT --- */
+/* --- 7. CONTENT --- */
 .content {
   width: 100%;
 }
@@ -190,10 +210,9 @@ body {
   line-height: 1.625;
   color: var(--text-color);
   
-  /* Clean text appearance */
-  text-align: left;
+  /* Justifies text and auto-hyphenates */
+  text-align: justify;
   hyphens: auto;
-  max-width: var(--content-width);
 }
 
 .prose p {
@@ -212,14 +231,7 @@ body {
   color: var(--link-hover-color);
 }
 
-/* Fix for long code blocks and tables */
-.prose pre, .prose table {
-  overflow-x: auto;
-  max-width: 100%;
-  display: block;
-}
-
-/* --- FOOTER --- */
+/* --- 8. FOOTER --- */
 .footer {
   margin-top: 40px;
   opacity: var(--footer-opacity);
@@ -227,10 +239,10 @@ body {
   color: var(--text-color);
 }
 
-/* --- THEME TOGGLE --- */
+/* --- 9. THEME TOGGLE --- */
 #theme-toggle {
-  position: fixed;
-  top: calc(var(--top-spacer) + 5px);
+  position: absolute;
+  top: var(--top-spacer); 
   right: 20px; 
   background: none;
   border: none;
@@ -246,24 +258,26 @@ body {
   opacity: 1;
 }
 
-/* --- DESKTOP STRUCTURE --- */
+/* --- 10. DESKTOP STRUCTURE --- */
 @media (min-width: 900px) {
   .layout {
     flex-direction: row;
-    padding: var(--top-spacer) 0 80px;
+    padding: var(--top-spacer) 0 40px;
   }
   
   .header {
     align-items: flex-start;
     margin-bottom: 0;
-    padding-right: var(--gap);
-    margin-right: 0;
+    
+    padding-right: 0; 
+    margin-right: var(--gap);
     
     position: sticky;
     top: var(--top-spacer);
     
     width: var(--sidebar-width);
-    min-height: calc(100vh - var(--top-spacer));
+    min-width: var(--sidebar-width);
+    height: calc(100vh - var(--top-spacer));
     justify-content: flex-start;
   }
   
@@ -280,22 +294,19 @@ body {
     width: var(--content-width);
   }
   
-  /* Theme toggle on desktop - positioned relative to content width */
-  #theme-toggle {
-    right: calc(50% - (var(--content-width) / 2));
-  }
-  
   .footer {
     margin-top: 0;
-    position: fixed;
-    bottom: 30px;
-    left: calc(50% + var(--sidebar-width) + var(--gap) - var(--content-width) / 2);
+    position: absolute; 
+    bottom: 20px;
+    
+    left: calc(var(--sidebar-width) + var(--gap));
     width: var(--content-width);
+    
     text-align: left;
   }
 }
 
-/* --- MOBILE STRUCTURE --- */
+/* --- 11. MOBILE STRUCTURE --- */
 @media (max-width: 899px) {
   .layout {
     padding: 40px 20px 60px;
