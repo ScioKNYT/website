@@ -94,10 +94,11 @@ body {
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap) * 2);
   padding: var(--top-spacer) 0 100px;
   width: 100%;
+  position: relative;
 }
 /* --- THEME TOGGLE POSITIONING --- */
 #theme-toggle {
-    position: fixed;
+    position: absolute;
     /* This matches the logo's top position exactly */
     top: 120px; 
     /* This aligns it to the far right, matching the 'line length' feel */
@@ -249,7 +250,7 @@ body {
 @media (min-width: 900px) {
   .footer {
     margin-top: 0;
-    position: fixed;
+    /*position: fixed;*/
     bottom: 30px;
     left: calc(50% + (var(--sidebar-width) + var(--gap) / 2));
     transform: translateX(-50%);
