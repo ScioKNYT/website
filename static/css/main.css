@@ -333,8 +333,3 @@ body {
     text-align: center;
   }
 }
-
-/* Cleanup */
-.social-icons {
-  display: none !important;
-}
