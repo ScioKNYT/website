@@ -26,12 +26,15 @@ title = 'Huzef UR Rahman'
 [[menu.main]]
     name = "Writings"
     url = "/posts/"
+    identifier = "posts"
     weight = 20
 [[menu.main]]
     name = "Thoughts"
     url = "/thoughts/"
+    identifier = "thoughts"
     weight = 30
 [[menu.main]]
     name = "Miscellany"
     url = "/misc/"
+    identifier = "misc"
     weight = 40
