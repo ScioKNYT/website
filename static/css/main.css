@@ -12,6 +12,10 @@
   --color-gray-500: #6b7280;
   --color-green-500: #22c55e;
   --color-green-600: #16a34a;
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --link-color: #666666;
+  --link-hover: #000000;
 }
 
 .dark {
@@ -19,7 +23,12 @@
   --color-background: #030712;
   --color-border: #374151;
 }
-
+body.dark {
+    --bg-color: #1d1d1f; /* Mitchell's Dark Blue/Grey */
+    --text-color: #eaeaea;
+    --link-color: #a0a0a0;
+    --link-hover: #ffffff;
+}
 * {
   box-sizing: border-box;
 }
@@ -36,6 +45,9 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .layout {
@@ -46,6 +58,31 @@ body {
   padding: var(--top-spacer) 0 100px;
   width: 100%;
 }
+/* --- THEME TOGGLE POSITIONING --- */
+#theme-toggle {
+    position: fixed;
+    /* This matches the logo's top position exactly */
+    top: 120px; 
+    /* This aligns it to the far right, matching the 'line length' feel */
+    right: 50px; 
+    
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color); /* Icon takes the text color */
+    padding: 0;
+    z-index: 1000;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+#theme-toggle:hover {
+    opacity: 1;
+}
+
+/* --- Ensure Links use the variables --- */
+.nav a { color: var(--link-color); }
+.nav a:hover { color: var(--link-hover); }
 
 @media (min-width: 900px) {
   .layout {
