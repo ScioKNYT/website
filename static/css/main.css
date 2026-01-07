@@ -182,7 +182,7 @@ body {
 }
 
 .menu a {
-  color: var(--color-text);
+  color: var(--text-color);
   display: block;
   font-weight: 500;
   text-decoration: none;
