@@ -113,7 +113,7 @@ body {
 }
 
 .logo {
-  margin-bottom: var(--identity-height);
+  margin-top: calc(var(--identity-height) + var(--content-start));
 }
 
 .logo a {
