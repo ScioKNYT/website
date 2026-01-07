@@ -64,7 +64,7 @@ body {
     /* This matches the logo's top position exactly */
     top: 120px; 
     /* This aligns it to the far right, matching the 'line length' feel */
-    right: 50px; 
+    right: 20px; 
     
     background: none;
     border: none;
@@ -248,4 +248,11 @@ body {
     font-size: 28px;
     margin-bottom: 24px;
   }
+}
+/* Add to bottom of main.css */
+@media (min-width: 1000px) {
+    #theme-toggle {
+        /* Calculates margin to keep button aligned with content edge */
+        right: calc((100vw - (var(--content-width) + var(--sidebar-width) + var(--gap) * 2)) / 2);
+    }
 }
