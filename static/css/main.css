@@ -1,38 +1,41 @@
 :root {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
+  
+  /* --- DIMENSIONS --- */
   --content-width: 650px;
   --sidebar-width: 200px;
   --gap: 60px;
   --top-spacer: 120px;
   
-  /* Base colors - Light theme */
+  /* --- COLORS (Light Theme Default) --- */
   --text-color: #111827;
   --bg-color: #ffffff;
   --border-color: #e5e7eb;
-  --link-color: #16a34a; /* Green-600 */
-  --link-hover-color: #15803d; /* Green-700 */
+  --link-color: #16a34a; 
+  --link-hover-color: #15803d; 
   --footer-opacity: 0.5;
   
-  /* Logo colors */
+  /* Logo Toggling Defaults */
   --logo-light-display: block;
   --logo-dark-display: none;
 }
 
-/* Dark theme */
+/* --- THEMES --- */
+
+/* Dark */
 body.dark {
   --text-color: #f3f4f6;
   --bg-color: #030712;
   --border-color: #374151;
-  --link-color: #34d399; /* Green-300 */
-  --link-hover-color: #4ade80; /* Green-200 */
+  --link-color: #34d399; 
+  --link-hover-color: #4ade80; 
   
-  /* Logo colors */
   --logo-light-display: none;
   --logo-dark-display: block;
 }
 
-/* Sepia theme */
+/* Sepia */
 body.sepia {
   --text-color: #433422;
   --bg-color: #f4ecd8;
@@ -40,12 +43,11 @@ body.sepia {
   --link-color: #8b6c42;
   --link-hover-color: #6b5332;
   
-  /* Logo colors - same as light theme */
   --logo-light-display: block;
   --logo-dark-display: none;
 }
 
-/* Ocean theme */
+/* Ocean */
 body.ocean {
   --text-color: #e2e8f0;
   --bg-color: #0f172a;
@@ -53,12 +55,11 @@ body.ocean {
   --link-color: #38bdf8;
   --link-hover-color: #7dd3fc;
   
-  /* Logo colors - same as dark theme */
   --logo-light-display: none;
   --logo-dark-display: block;
 }
 
-/* Terminal theme */
+/* Terminal */
 body.terminal {
   --text-color: #00ff00;
   --bg-color: #0c0c0c;
@@ -66,11 +67,11 @@ body.terminal {
   --link-color: #00cc00;
   --link-hover-color: #00ff00;
   
-  /* Logo colors - same as dark theme */
   --logo-light-display: none;
   --logo-dark-display: block;
 }
 
+/* --- GLOBAL RESETS --- */
 * {
   box-sizing: border-box;
 }
@@ -92,18 +93,22 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Layout container */
+/* --- MAIN LAYOUT --- */
 .layout {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap) * 2);
+  
+  /* SQUARED LOOK FIX: Exact calculation (Sidebar + Gap + Content) */
+  /* This removes floating whitespace and centers the block strictly */
+  max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
+  
   padding: var(--top-spacer) 0 100px;
   width: 100%;
   position: relative;
 }
 
-/* Sidebar/Header section */
+/* --- HEADER / SIDEBAR --- */
 .header {
   display: flex;
   flex-direction: column;
@@ -169,7 +174,7 @@ body {
   opacity: 0.7;
 }
 
-/* Main content area */
+/* --- CONTENT --- */
 .content {
   width: 100%;
 }
@@ -205,7 +210,7 @@ body {
   color: var(--link-hover-color);
 }
 
-/* Footer styling */
+/* --- FOOTER --- */
 .footer {
   margin-top: 40px;
   opacity: var(--footer-opacity);
@@ -213,12 +218,11 @@ body {
   color: var(--text-color);
 }
 
-/* --- THEME TOGGLE FIXED --- */
+/* --- THEME TOGGLE --- */
 #theme-toggle {
-  /* Changed from fixed to absolute to prevent scrolling */
   position: absolute;
-  top: 120px; /* Matches --top-spacer */
-  right: 20px; /* Simple right alignment */
+  top: 120px; 
+  right: 20px; 
   background: none;
   border: none;
   cursor: pointer;
@@ -233,7 +237,7 @@ body {
   opacity: 1;
 }
 
-/* Desktop layout adjustments */
+/* --- DESKTOP STRUCTURE (The Grid) --- */
 @media (min-width: 900px) {
   .layout {
     flex-direction: row;
@@ -243,10 +247,18 @@ body {
   .header {
     align-items: flex-start;
     margin-bottom: 0;
-    padding-right: var(--gap);
+    
+    /* SQUARED LOOK FIX: Use margin instead of padding for the gap */
+    /* This creates a cleaner separation between columns */
+    padding-right: 0; 
+    margin-right: var(--gap);
+    
     position: sticky;
     top: var(--top-spacer);
+    
+    /* Rigid width prevents squishing */
     width: var(--sidebar-width);
+    min-width: var(--sidebar-width);
     height: calc(100vh - var(--top-spacer));
     justify-content: flex-start;
   }
@@ -264,26 +276,27 @@ body {
     width: var(--content-width);
   }
   
-  /* --- FOOTER FIXED (DESKTOP) --- */
+  /* --- DESKTOP FOOTER ALIGNMENT --- */
   .footer {
     margin-top: 0;
-    
-    /* Changed to absolute so it sits at the bottom of the layout, not the screen */
     position: absolute; 
     bottom: 20px;
     
-    /* This calculation aligns it precisely with the start of your content text */
+    /* Align strictly with the Content Column */
     left: calc(var(--sidebar-width) + var(--gap));
-    
     width: var(--content-width);
-    text-align: center;
+    
+    /* SQUARED LOOK FIX: Align text to left (grid snap) instead of center */
+    text-align: left;
   }
 }
 
-/* Mobile layout adjustments */
+/* --- MOBILE STRUCTURE --- */
 @media (max-width: 899px) {
   .layout {
     padding: 40px 20px 60px;
+    /* On mobile, we let the width be fluid */
+    max-width: 100%;
   }
   
   .header {
@@ -326,7 +339,7 @@ body {
   }
 }
 
-/* Cleanup rules */
+/* Cleanup */
 .social-icons {
   display: none !important;
 }
