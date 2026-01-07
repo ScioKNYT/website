@@ -2,17 +2,17 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-serif: PT Serif, Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
   
-  /* --- DIMENSIONS ADJUSTED --- */
+  /* --- DIMENSIONS --- */
   --content-width: 650px;
   --sidebar-width: 200px;
   
-  /* FIX 1: Reduced gap to 20px to match the Theme Toggle spacing (Symmetry) */
+  /* Matches the Theme Toggle spacing (20px) */
   --gap: 20px; 
   
-  /* FIX 2: Reduced top space so homepage fits without scrolling */
+  /* Reduced top space for tight "No Scroll" fit */
   --top-spacer: 100px; 
   
-  /* --- COLORS (Light Theme Default) --- */
+  /* --- COLORS --- */
   --text-color: #111827;
   --bg-color: #ffffff;
   --border-color: #e5e7eb;
@@ -20,7 +20,7 @@
   --link-hover-color: #15803d; 
   --footer-opacity: 0.5;
   
-  /* Logo Toggling Defaults */
+  /* Logo Defaults */
   --logo-light-display: block;
   --logo-dark-display: none;
 }
@@ -72,7 +72,8 @@ body.terminal {
 }
 
 html {
-  overflow-y: scroll;
+  /* FIX: Changed from 'scroll' to 'auto' to remove the forced scrollbar */
+  overflow-y: auto; 
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
@@ -94,11 +95,10 @@ body {
   flex-direction: column;
   margin: 0 auto;
   
+  /* Calculates exact width: Sidebar(200) + Gap(20) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  /* FIX 3: Reduced bottom padding to prevent unnecessary scrolling */
   padding: var(--top-spacer) 0 40px; 
-  
   width: 100%;
   position: relative;
 }
@@ -188,8 +188,9 @@ body {
   line-height: 1.625;
   color: var(--text-color);
   
-  /* FIX 4: Justified text as requested */
+  /* FIX: Justifies text and auto-hyphenates to look clean */
   text-align: justify;
+  hyphens: auto;
 }
 
 .prose p {
@@ -219,7 +220,7 @@ body {
 /* --- THEME TOGGLE --- */
 #theme-toggle {
   position: absolute;
-  top: 100px; /* Matches the new --top-spacer */
+  top: 100px; 
   right: 20px; 
   background: none;
   border: none;
@@ -235,11 +236,11 @@ body {
   opacity: 1;
 }
 
-/* --- DESKTOP STRUCTURE (The Grid) --- */
+/* --- DESKTOP STRUCTURE --- */
 @media (min-width: 900px) {
   .layout {
     flex-direction: row;
-    padding: var(--top-spacer) 0 40px; /* Reduced bottom padding */
+    padding: var(--top-spacer) 0 40px;
   }
   
   .header {
@@ -271,13 +272,11 @@ body {
     width: var(--content-width);
   }
   
-  /* --- DESKTOP FOOTER ALIGNMENT --- */
   .footer {
     margin-top: 0;
     position: absolute; 
     bottom: 20px;
     
-    /* Align strictly with the Content Column */
     left: calc(var(--sidebar-width) + var(--gap));
     width: var(--content-width);
     
