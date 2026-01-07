@@ -100,7 +100,7 @@ body {
   /* Calculates exact width: Sidebar(200) + Gap(60) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  padding: var(--top-spacer) 0 100px; 
+  padding: var(--top-spacer) 0 0; 
   width: 100%;
   position: relative;
 }
@@ -288,7 +288,7 @@ body {
   .footer {
     margin-top: 0;
     position: absolute;
-    bottom: 30px;
+    bottom: 50px;
     left: calc(50% + var(--sidebar-width) + var(--gap) - var(--content-width) / 2);
     width: var(--content-width);
     text-align: left;
