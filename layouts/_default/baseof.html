@@ -98,7 +98,9 @@
       <nav class="nav">
         <ul class="menu">
           {{ range .Site.Menus.main }}
-          <li class="{{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}active{{ end }}">
+          {{ $current := $.RelPermalink }}
+          {{ $item := .URL | relURL }}
+          <li class="{{ if or (eq $current $item) (and (ne $item "/") (hasPrefix $current $item)) }}active{{ end }}">
             <a href="{{ .URL | relURL }}">{{ .Name }}</a>
           </li>
           {{ end }}
