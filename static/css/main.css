@@ -284,7 +284,10 @@ body {
   
   /* Theme toggle on desktop - positioned relative to content width */
   #theme-toggle {
-    right: calc(50% - ( (var(--content-width) + var(--sidebar-width) + var(--gap)) / 2 ) + var(--sidebar-width)
+    right: calc(
+      50% -
+      ( (var(--content-width) + var(--sidebar-width) + var(--gap)) / 2 )
+      + 28px
     );
   }  
 }
