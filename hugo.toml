@@ -13,7 +13,6 @@ title = 'Huzef UR Rahman'
     ShowBreadCrumbs = false
     hideFooter = false
     showFullTextinRoot = false
-    description = "Materials and Design Engineer."
     logoImage = "logo_bl.png"      # The default Black logo
     logoImageDark = "logo_wh.png"  # The White logo for dark themes
     # This specifically removes the "Powered by" lines in PaperMod
