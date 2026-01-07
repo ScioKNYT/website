@@ -310,7 +310,7 @@ body {
     max-width: 100%;
   }
   #theme-toggle {
-    position: fixed;
+    position: absolute;
     top: 16px;
     right: 20px;
     }
