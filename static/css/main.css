@@ -73,7 +73,8 @@ body.terminal {
 
 html {
   /* FIX: Changed from 'scroll' to 'auto' to remove the forced scrollbar */
-  overflow-y: auto; 
+  overflow-y: auto;
+  height: 100%;
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-sans);
@@ -83,7 +84,7 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
+  height: 100%;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
@@ -98,7 +99,8 @@ body {
   /* Calculates exact width: Sidebar(200) + Gap(20) + Content(650) */
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   
-  padding: var(--top-spacer) 0 40px; 
+  padding-top: var(--top-spacer);
+  padding-bottom: 0;
   width: 100%;
   position: relative;
 }
