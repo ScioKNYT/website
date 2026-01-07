@@ -221,10 +221,12 @@ body {
 
 /* --- FOOTER --- */
 .footer {
-  margin-top: 40px;
+  margin-top: 120px;
+  padding-bottom: 80px;
   opacity: var(--footer-opacity);
   font-size: 12px;
   color: var(--text-color);
+  max-width: var(--content-width);
 }
 
 /* --- THEME TOGGLE --- */
@@ -282,7 +284,8 @@ body {
   
   /* Theme toggle on desktop - positioned relative to content width */
   #theme-toggle {
-    right: calc(50% - (var(--content-width) / 2));
+    right: calc(50% - ( (var(--content-width) + var(--sidebar-width) + var(--gap)) / 2 ) + var(--sidebar-width)
+    );
   }  
 }
 
