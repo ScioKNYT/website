@@ -24,11 +24,32 @@
   --color-border: #374151;
 }
 body.dark {
-    --bg-color: #1d1d1f; /* Mitchell's Dark Blue/Grey */
+    --bg-color: #1d1d1f;
     --text-color: #eaeaea;
     --link-color: #a0a0a0;
     --link-hover: #ffffff;
 }
+/* --- NEW THEME: SEPIA (Warm/Book style) --- */
+body.sepia {
+    --bg-color: #f4ecd8;
+    --text-color: #433422;
+    --link-color: #8b6c42;
+    --link-hover: #2b2216;
+}
+/* Fix prose links for Sepia */
+body.sepia .prose a { color: #a67c52; }
+
+/* --- NEW THEME: TERMINAL (Matrix style) --- */
+body.terminal {
+    --bg-color: #0c0c0c;
+    --text-color: #00ff00;
+    --link-color: #008f11;
+    --link-hover: #ccffcc;
+    --color-border: #003300;
+}
+/* Fix prose links for Terminal */
+body.terminal .prose a { color: #00cc00; }
+
 * {
   box-sizing: border-box;
 }
