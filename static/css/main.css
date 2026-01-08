@@ -263,25 +263,21 @@ body {
 /* --- DESKTOP STRUCTURE --- */
 @media (min-width: 900px) {
   .layout {
-    flex-direction: row;    
+    flex-direction: row;
   }
+
   .header {
-    align-items: flex-start;
-    padding-right: var(--gap);
-    margin-right: 0;    
     position: sticky;
-    top: var(--baseline-offset);;    
+    top: var(--baseline-offset);
     width: var(--sidebar-width);
-    min-height: calc(100vh - var(--top-spacer));
-    justify-content: flex-start;
+    padding-right: var(--gap);
+    align-items: flex-start;
   }
+
   .content {
     max-width: var(--content-width);
     width: var(--content-width);
   }
-  .logo-image {
-    display: block;
-  }   
 }
 
 /* --- MOBILE STRUCTURE --- */
