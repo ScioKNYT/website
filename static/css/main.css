@@ -241,10 +241,12 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
+    align-items: center;
   }
   
   .menu li {
     margin: 0;
+    padding-left: 0;
   }
   
   .content {
