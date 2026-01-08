@@ -89,7 +89,7 @@
 
     <main class="content">
       <div class="page-identity">
-        {{ .Site.Title }}
+         <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
       </div>
       {{ block "main" . }}{{ end }}
 
