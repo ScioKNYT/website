@@ -73,7 +73,6 @@ body {
   min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
-  overflow-x: hidden;
 }
 
 /* LAYOUT */
@@ -244,7 +243,15 @@ body {
     gap: 20px;
     align-items: center;
   }
-  
+  .content,
+  .prose {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .prose {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
   .menu li {
     margin: 0;
     padding-left: 0;
@@ -252,15 +259,7 @@ body {
   .menu li.active a {
   font-weight: 600;
   }
-  .content {
-    width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .prose {
-    padding-left: 0;
-    padding-right: 0;
-  }
+  
   .title {
     font-size: 28px;
     margin-bottom: 24px;
