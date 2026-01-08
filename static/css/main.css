@@ -200,6 +200,9 @@ body {
     position: relative;
     top: calc(var(--baseline-offset) - 1.6em);
   }
+  .logo {
+    margin-left: calc(var(--sidebar-width) + var(--gap));
+  }
   .layout {
     flex-direction: row;
     padding-top: var(--baseline-offset);
