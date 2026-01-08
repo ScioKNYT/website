@@ -85,7 +85,7 @@ body {
   position: relative;
 }
 .logo {
-  margin-bottom: var(--column-start-offset);
+  margin-bottom: var(--identity-height);
 }
 
 .logo a {
