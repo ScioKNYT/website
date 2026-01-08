@@ -48,7 +48,7 @@
   </script>
 </head>
 
-<body class="antialiased">
+<body class="antialiased {{ if .IsHome }}home{{ end }}">
 
   <!-- ✅ THEME TOGGLE MOVED HERE -->
   <button id="theme-toggle" aria-label="Cycle Theme">
