@@ -79,7 +79,7 @@ body {
 .layout {
   display: flex;
   flex-direction: column;
-  margin-left: 200px;
+  margin-left: 400px;
   margin-right: auto;
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   width: 100%;
