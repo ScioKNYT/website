@@ -80,8 +80,6 @@ body {
 .layout {
   display: flex;
   flex-direction: column;
-  margin-left: 200px;
-  margin-right: auto;
   max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
   width: 100%;
   position: relative;
@@ -222,6 +220,8 @@ body {
     flex-direction: row;
     gap: var(--gap);
     padding-top: 24px;
+    margin-left: 200px;
+    margin-right: auto;
   }
   .header {    
     width: var(--sidebar-width);
