@@ -196,6 +196,9 @@ body {
 }
 /* DESKTOP */
 @media (min-width: 900px) {
+  .logo {
+    margin-top: calc(var(--baseline-offset) - var(--identity-height));
+  }
   .layout {
     flex-direction: row;
     padding-top: var(--baseline-offset);
@@ -208,7 +211,10 @@ body {
     padding-right: var(--gap);
     top: var(--baseline-offset);
   }
-
+  .content,
+  .logo {
+    outline: 1px solid red;
+  }
   .content {
     width: var(--content-width);
   }
