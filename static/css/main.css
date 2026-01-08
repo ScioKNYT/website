@@ -196,8 +196,9 @@ body {
 }
 /* DESKTOP */
 @media (min-width: 900px) {
-  .logo {
-    margin-top: calc(var(--baseline-offset) - var(--identity-height));
+  .logo-text {
+    position: relative;
+    top: calc(var(--baseline-offset) - 1.6em);
   }
   .layout {
     flex-direction: row;
