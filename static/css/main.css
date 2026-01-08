@@ -198,8 +198,10 @@ body {
 @media (min-width: 900px) {
   .logo-text {
     white-space: nowrap;
+    top: calc(-1 * var(--baseline-offset));
+    left: 0;
+    position: absolute;
     margin-bottom: 1.6rem;
-    margin-left: calc(var(--sidebar-width) + var(--gap));
   }
   .layout {
     flex-direction: row;
@@ -220,6 +222,7 @@ body {
   }
   .content {
     width: var(--content-width);
+    position: relative;
     margin-top: var(--baseline-offset);    
   }
 }
