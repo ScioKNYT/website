@@ -198,8 +198,7 @@ body {
 @media (min-width: 900px) {
   .logo-text {
     white-space: nowrap;
-    margin-bottom: 1.6rem;
-    margin-left: calc(var(--sidebar-width) + var(--gap));   
+    margin-bottom: 1.6rem;   
   }
   .layout {
     flex-direction: row;
