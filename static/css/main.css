@@ -188,7 +188,7 @@ body {
 
 /* FOOTER */
 .footer {
-  margin-top: 5rem;
+  margin-top: 10rem;
   font-size: 12px;
   opacity: var(--footer-opacity);
 }
