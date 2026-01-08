@@ -254,8 +254,13 @@ body {
   }
   .content {
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
-  
+  .prose {
+    padding-left: 0;
+    padding-right: 0;
+  }
   .title {
     font-size: 28px;
     margin-bottom: 24px;
