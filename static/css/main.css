@@ -197,8 +197,8 @@ body {
 /* DESKTOP */
 @media (min-width: 900px) {
   .logo-text {
+    white-space: nowrap;
     margin-bottom: 1.6rem;
-    top: calc(var(--baseline-offset) - 1.6em);    
     margin-left: calc(var(--sidebar-width) + var(--gap));   
   }
   .layout {
