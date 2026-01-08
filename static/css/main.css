@@ -241,6 +241,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
+    padding-left: 20px;
     align-items: center;
   }
   .content {
