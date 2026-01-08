@@ -272,11 +272,13 @@ body {
     width: var(--sidebar-width);
     padding-right: var(--gap);
     align-items: flex-start;
+    min-height: calc(100vh - var(--baseline-offset));
   }
 
   .content {
     max-width: var(--content-width);
     width: var(--content-width);
+    padding-top: var(--baseline-offset);
   }
 }
 
