@@ -288,14 +288,11 @@ body {
   .logo-image {
     display: block;
   }
-  
   body:not(.home) .content {
+  max-width: var(--content-width);
+  width: var(--content-width);
   padding-top: var(--content-start);
-  }
-  .content {
-    max-width: var(--content-width);
-    width: var(--content-width);    
-  } 
+  }  
 }
 
 /* --- MOBILE STRUCTURE --- */
