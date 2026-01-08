@@ -1,3 +1,4 @@
+* {  box-sizing: border-box;}
 :root {
   --identity-height: 40px;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -269,13 +270,11 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     max-width: 100%;
-    box-sizing: border-box;
   }
   .prose {
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
-    box-sizing: border-box;
   }
   .menu li {
     margin: 0;
@@ -295,4 +294,16 @@ body {
     margin-top: 40px;
     text-align: center;
   }
+}
+/* TEMPORARY DEBUGGER */
+* {
+  outline: 1px solid rgba(255, 0, 0, 0.3) !important;
+  background: rgba(255, 0, 0, 0.03) !important;
+}
+
+/* Highlight Padding (Green) and Margin (Orange) */
+* {
+  box-shadow: 
+    inset 0 0 0 2px rgba(0, 255, 0, 0.2), /* Padding Area */
+    0 0 0 2px rgba(255, 165, 0, 0.2);     /* Margin Area */
 }
