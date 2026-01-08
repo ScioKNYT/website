@@ -221,10 +221,6 @@ body {
     margin-top: var(--baseline-offset);
     top: var(--baseline-offset);
   }
-  .content,
-  .logo {
-    outline: 1px solid red;
-  }
   .content {
     width: var(--content-width);
     position: relative;
