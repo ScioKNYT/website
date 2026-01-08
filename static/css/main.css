@@ -232,6 +232,7 @@ body {
   .content {
     width: var(--content-width);
     position: relative;
+    margin-left: -10px;
     margin-top: var(--baseline-offset);    
   }
 }
