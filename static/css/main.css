@@ -17,6 +17,46 @@
   --logo-light-display: block;
   --logo-dark-display: none;
 }
+/* --- THEMES --- */
+body.dark {
+  --text-color: #f3f4f6;
+  --bg-color: #030712;
+  --border-color: #374151;
+  --link-color: #34d399; 
+  --link-hover-color: #4ade80; 
+  --logo-light-display: none;
+  --logo-dark-display: block;
+}
+
+body.sepia {
+  --text-color: #433422;
+  --bg-color: #f4ecd8;
+  --border-color: #d6c8a5;
+  --link-color: #8b6c42;
+  --link-hover-color: #6b5332;
+  --logo-light-display: block;
+  --logo-dark-display: none;
+}
+
+body.ocean {
+  --text-color: #e2e8f0;
+  --bg-color: #0f172a;
+  --border-color: #1e293b;
+  --link-color: #38bdf8;
+  --link-hover-color: #7dd3fc;
+  --logo-light-display: none;
+  --logo-dark-display: block;
+}
+
+body.terminal {
+  --text-color: #00ff00;
+  --bg-color: #0c0c0c;
+  --border-color: #003300;
+  --link-color: #00cc00;
+  --link-hover-color: #00ff00;
+  --logo-light-display: none;
+  --logo-dark-display: block;
+}
 
 /* GLOBAL */
 html {
