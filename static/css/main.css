@@ -238,6 +238,7 @@ body {
   }
   
   .menu {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
@@ -248,7 +249,9 @@ body {
     margin: 0;
     padding-left: 0;
   }
-  
+  .menu li.active a {
+  font-weight: 600;
+  }
   .content {
     width: 100%;
   }
