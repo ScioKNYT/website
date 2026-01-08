@@ -289,14 +289,12 @@ body {
     display: block;
   }
   
-  .logo-text {
-    display: none;
+  body:not(.home) .content {
+  padding-top: var(--content-start);
   }
-  
   .content {
     max-width: var(--content-width);
-    width: var(--content-width);
-    padding-top: var(--content-start);
+    width: var(--content-width);    
   } 
 }
 
