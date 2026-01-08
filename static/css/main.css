@@ -114,6 +114,11 @@ body {
   font-size: 18px;
   font-weight: 600;
 }
+.page-identity {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 1.6rem;
+}
 
 /* HEADER */
 .header {
