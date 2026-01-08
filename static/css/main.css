@@ -221,7 +221,9 @@ body {
     gap: var(--gap);
     padding-top: 24px;
   }
-
+  .prose {
+    margin-top: calc(2.2rem + 2px);
+  }
   .header {
     width: var(--sidebar-width);
     position: sticky;
