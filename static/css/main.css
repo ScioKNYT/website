@@ -125,7 +125,7 @@ body {
   text-decoration: none;
 }
 .page-identity a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* HEADER */
