@@ -197,13 +197,13 @@ body {
 /* DESKTOP */
 @media (min-width: 900px) {
   .logo-text {
-    position: relative;
-    top: calc(var(--baseline-offset) - 1.6em);
+    margin-bottom: 1.6rem;
+    top: calc(var(--baseline-offset) - 1.6em);    
     margin-left: calc(var(--sidebar-width) + var(--gap));   
   }
   .layout {
     flex-direction: row;
-    padding-top: var(--baseline-offset);
+    padding-top: 0;
   }
 
   .header {
@@ -211,6 +211,7 @@ body {
     position: sticky;
     width: var(--sidebar-width);
     padding-right: var(--gap);
+    margin-top: var(--baseline-offset);
     top: var(--baseline-offset);
   }
   .content,
@@ -219,6 +220,7 @@ body {
   }
   .content {
     width: var(--content-width);
+    margin-top: var(--baseline-offset);    
   }
 }
 /* --- MOBILE STRUCTURE --- */
