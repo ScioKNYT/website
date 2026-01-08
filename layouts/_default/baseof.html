@@ -71,8 +71,6 @@
                  alt="{{ .Site.Title }}"
                  class="logo-image logo-dark">
           {{ end }}
-
-          <span class="logo-text">{{ .Site.Title }}</span>
         </a>
       </div>
 
@@ -90,6 +88,9 @@
     </header>
 
     <main class="content">
+      <div class="page-identity">
+        {{ .Site.Title }}
+      </div>
       {{ block "main" . }}{{ end }}
 
       <footer class="footer">
