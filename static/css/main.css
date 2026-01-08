@@ -80,7 +80,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: calc(var(--content-width) + var(--sidebar-width) + var(--gap));
+  max-width: calc(var(--content-width) + var(--sidebar-width));
   width: 100%;
   position: relative;
 }
