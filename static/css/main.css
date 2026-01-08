@@ -199,9 +199,7 @@ body {
   .logo-text {
     position: relative;
     top: calc(var(--baseline-offset) - 1.6em);
-  }
-  .logo {
-    margin-left: calc(var(--sidebar-width) + var(--gap));
+    margin-left: calc(var(--sidebar-width) + var(--gap));   
   }
   .layout {
     flex-direction: row;
