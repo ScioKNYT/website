@@ -243,14 +243,17 @@ body {
     gap: 20px;
     align-items: center;
   }
-  .content,
-  .prose {
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
     max-width: 100%;
     box-sizing: border-box;
   }
   .prose {
     word-wrap: break-word;
     overflow-wrap: break-word;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .menu li {
     margin: 0;
