@@ -7,7 +7,7 @@
   --font-serif:"PT Serif", Georgia, ui-serif, Cambria, "Times New Roman", Times, serif;
 
   --baseline-offset:120px;
-  --column-start-offset:72px;
+  --column-start-offset:16px;
   --content-width:650px;
   --sidebar-width:165px;
   --gap:32px;
@@ -74,9 +74,10 @@ body{
   display:flex;
   gap:var(--gap);
   max-width:calc(var(--content-width) + var(--sidebar-width) + var(--gap));
-  margin:0 auto;
+  margin-left:200px;
+  margin-right:auto;
   width:100%;
-  padding-top:300px;
+  padding-top:200px;
   padding-left:var(--column-start-offset);
 }
 
