@@ -172,7 +172,7 @@ body{
 @media (max-width:899px){
   :root{
     --identity-height:40px;
-    --column-start-offset:0px;
+    --column-start-offset:20px;
     --gap:20px;
   }
 
