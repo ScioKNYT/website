@@ -58,8 +58,10 @@
   <div class="layout">
 
     <header class="header">
-      <div class="logo" data-name="{{ .Site.Title }}">
-        <a href="{{ .Site.BaseURL }}" class="logo-link" aria-label="{{ .Site.Title }}"></a>
+      <div class="logo">
+        <a href="{{ .Site.BaseURL }}" class="logo-link" aria-label="{{ .Site.Title }}">
+          <span class="logo-name">{{ .Site.Title }}</span>
+        </a>
       </div>
       <nav class="nav">
         <ul class="menu">
