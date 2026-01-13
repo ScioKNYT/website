@@ -58,11 +58,9 @@
   <div class="layout">
 
     <header class="header">
-      <div class="logo">
+      <div class="logo" data-name="{{ .Site.Title }}">
         <a href="{{ .Site.BaseURL }}" class="logo-link" aria-label="{{ .Site.Title }}"></a>
       </div>
-
-
       <nav class="nav">
         <ul class="menu">
           {{ range .Site.Menus.main }}
