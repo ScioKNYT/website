@@ -194,7 +194,6 @@ body{
   }
 
   /* Logo + name row */
-  @media (max-width:1100px){
   .logo{
     display:flex;
     align-items:center;
@@ -216,7 +215,6 @@ body{
     line-height:1;
     color:var(--text-color);
   }
-}
   /* Nav below */
   .menu{
     display:flex;
