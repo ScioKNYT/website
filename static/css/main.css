@@ -188,7 +188,7 @@ body{
   .header{
     position:relative;
     top:auto;
-    width:100%;
+    width:auto;
     padding-right:0;
     align-items:flex-start;
   }
@@ -207,7 +207,8 @@ body{
   .content{
     width:100%;
     padding-left:12px;
-    padding-right:20px;
+    padding-right:12px;
+    margin-left:0;
   }
 
   .page-identity{
