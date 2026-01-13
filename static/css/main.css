@@ -177,12 +177,6 @@ body{
     --gap:20px;
   }
 
-  .layout,
-  .header,
-  .content{
-    transition: all 0.2s ease;
-  }
-
   .layout{
     margin-left:0;
     margin-right:auto;
@@ -195,18 +189,36 @@ body{
   .header{
     position:relative;
     top:auto;
-    width:auto;
+    width:100%;
     padding-right:0;
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  /* Logo + name row */
+  .logo{
+    display:flex;
     align-items:center;
     gap:12px;
   }
 
-  .logo{
-    flex-shrink:0;
+  .logo::after{
+    content: attr(data-name);
+    font-size:18px;
+    font-weight:600;
+    line-height:1;
+    color:var(--text-color);
   }
 
+  .logo a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  /* Nav below */
   .menu{
     display:flex;
     flex-direction:row;
@@ -219,12 +231,7 @@ body{
     padding:0;
   }
 
-  .page-identity{
-    margin:0;
-    font-size:18px;
-    line-height:1;
-  }
-
+  /* Hide content name only on mobile */
   .content .page-identity{
     display:none;
   }
