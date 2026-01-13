@@ -180,7 +180,6 @@ body{
     margin-left:0;
     margin-right:auto;
     padding-left:12px;
-    flex-direction:column;
     padding-top:60px;
     gap:16px;
   }
