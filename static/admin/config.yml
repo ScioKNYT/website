@@ -34,6 +34,7 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "thoughts"
@@ -42,6 +43,7 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "miscellany"
@@ -50,4 +52,5 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
