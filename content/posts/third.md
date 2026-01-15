@@ -1,4 +1,4 @@
 ---
 title: Third
 ---
-Third post is here.
+The third post is here.
