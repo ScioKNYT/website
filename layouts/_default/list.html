@@ -7,16 +7,15 @@
     </div>
   {{ end }}
 
-  <ul class="post-list">
+  <div class="posts-list">
     {{ range .Pages }}
-      <li>
-        <a href="{{ .RelPermalink }}">
-          <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
-          <span class="post-title">{{ .Title }}</span>
-        </a>
-      </li>
+      <a href="{{ .RelPermalink }}" class="post-link">
+        <span class="post-title">{{ .Title }}</span>
+        <span class="post-date">{{ .Date.Format "Jan 2" }}</span>
+      </a>
     {{ end }}
-  </ul>
+  </div>
+
 
 </section>
 {{ end }}
