@@ -173,17 +173,20 @@ body{
 .posts-list{
   display:flex;
   flex-direction:column;
-  gap:1.6rem;
+  gap:0;
 }
 
 .post-link{
   display:flex;
-  flex-direction:column;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:12px 0;
   text-decoration:none;
   color:var(--text-color);
+  border-bottom:1px solid rgba(0,0,0,.08);
   font-size:18px;
   font-weight:500;
-  opacity:.85;
+  opacity:.85;  
 }
 
 .post-link:hover{
@@ -198,7 +201,7 @@ body{
 .post-date{
   font-size:13px;
   opacity:.5;
-  margin-top:2px;
+  white-space:nowrap;
 }
 
 /* ---------- MOBILE ---------- */
